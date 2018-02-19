@@ -1,0 +1,5 @@
+const CHANGE_GAME_STATE = 'CHANGE_GAME_STATE';
+
+export {
+	CHANGE_GAME_STATE
+};
