@@ -3,26 +3,24 @@ import {View } from 'react-native';
 
 import ValueDisplay from './ValueDisplay';
 import Divider from './Divider';
+import wordsGenerator from './wordsGenerator';
 
-const words = {
-	positive: ['happiness', 'kindness', 'relaxation'],
-	neutral: ['real', 'mountain', 'table']
+type GameplayProps = {
+	onGameEnd: Function;
 };
 
-// Generates a number up to and including max
-const getRandomNumber = (max: number) => Math.floor(Math.random() * (max + 1));
-
-// Generates a number between -1 and 1
-const randomSort = () => getRandomNumber(2) - 1; 
-
-class Gameplay extends React.Component {
+class Gameplay extends React.Component<GameplayProps> {
 	displayWordsInterval = 500;
 	feedbackInterval = 700;
+	numberOfRounds = 1;
 
 	constructor(props) {
 		super(props);
 
+		this.wordsGenerator = wordsGenerator();
+
 		this.state = {
+			roundNumber: 0,
 			mode: 'displayValues',
 			topValue: {},
 			bottomValue: {}
@@ -34,45 +32,7 @@ class Gameplay extends React.Component {
 	}
 
 	startGame() {
-		this.focusOnValueIterator = words.positive.sort(randomSort)[Symbol.iterator]();
-		this.focusAwayFromValueIterator = words.neutral.sort(randomSort)[Symbol.iterator]();
-
-		this.getNewWordPair();
-	}
-
-	getNewWordPair() {
-		const focusOnValue = this.focusOnValueIterator.next().value;
-		const focusAwayFromValue = this.focusAwayFromValueIterator.next().value;
-
-		const newState = {mode: 'displayValues'};
-		const valueOrder = this._getValueOrderArray();
-
-		newState[valueOrder.pop()] = {
-			value: focusOnValue,
-			focusOn: true
-		};
-
-		newState[valueOrder.pop()] = {
-			value: focusAwayFromValue,
-			focusOn: false
-		};
-
-		this.setState(newState);
-		this.startWordsShownTimeout();
-	}
-
-	_getValueOrderArray() {
-		const valueOrder = [];
-
-		if (getRandomNumber(1)) {
-			valueOrder.push('topValue');
-			valueOrder.push('bottomValue');
-		} else {
-			valueOrder.push('bottomValue');
-			valueOrder.push('topValue');
-		}
-
-		return valueOrder;
+		this.runNextRound();
 	}
 
 	startWordsShownTimeout() {
@@ -86,7 +46,30 @@ class Gameplay extends React.Component {
 
 		this.setState({mode});
 
-		setTimeout(this.getNewWordPair.bind(this), this.feedbackInterval);
+		setTimeout(this.checkForNextRound.bind(this), this.feedbackInterval);
+	}
+
+	checkForNextRound() {
+		if (this.shouldRunNextRound()) {
+			this.runNextRound();
+		} else {
+			this.props.onGameEnd();
+		}
+	}
+
+	shouldRunNextRound() {
+		return this.state.roundNumber < this.numberOfRounds;
+	}
+
+	runNextRound() {
+		this.setState(currentState =>
+			({
+				roundNumber: ++currentState.roundNumber,
+				mode: 'displayValues',
+				...this.wordsGenerator.next().value
+			}));
+
+		this.startWordsShownTimeout();
 	}
 
 	getIsSuccess() {
@@ -99,25 +82,25 @@ class Gameplay extends React.Component {
 		}
 	}
 
+	renderValueDisplay(word) {
+		return (
+			<ValueDisplay
+				mode={this.state.mode}
+				value={word.value}
+				focusOn={word.focusOn}
+				onPress={this.handlePress.bind(this)}
+			></ValueDisplay>
+		);
+	}
+
 	render() {
-		const {mode, topValue, bottomValue} = this.state;
 		return (
 			<View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center'}}>
-				<ValueDisplay
-					mode={mode}
-					value={topValue.value}
-					focusOn={topValue.focusOn}
-					onPress={this.handlePress.bind(this)}
-				></ValueDisplay>
+				{this.renderValueDisplay(this.state.topValue)}
 
 				<Divider isSuccess={this.getIsSuccess()}></Divider>
 
-				<ValueDisplay
-					mode={mode}
-					value={bottomValue.value}
-					focusOn={bottomValue.focusOn}
-					onPress={this.handlePress.bind(this)}
-				></ValueDisplay>
+				{this.renderValueDisplay(this.state.bottomValue)}
 			</View>
 		);
 	}

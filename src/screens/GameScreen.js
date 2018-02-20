@@ -6,18 +6,21 @@ import Gameplay from '../components/Gameplay';
 
 type Props = {
 	gameState: string;
+	navigation: Object;
 };
 
 class GameScreen extends React.Component<Props> {
 	render() {
-		if (this.props.gameState === GAME_STATES.Countdown) {
+		const {gameState, navigation} = this.props;
+		if (gameState === GAME_STATES.Countdown) {
 			return (
 				<Countdown>
 				</Countdown>
 			);
-		} else if (this.props.gameState === GAME_STATES.Playing) {
+		} else if (gameState === GAME_STATES.Playing) {
 			return ( 
-				<Gameplay>
+				<Gameplay
+					onGameEnd={() => navigation.navigate('Score')}>
 				</Gameplay>
 			); 
 		}

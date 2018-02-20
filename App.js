@@ -6,6 +6,7 @@ import {createStore} from 'redux';
 import rootReducer from './src/reducers/rootReducer';
 import HomeScreen from './src/screens/HomeScreen';
 import GameScreen from './src/screens/GameScreen';
+import ScoreScreen from './src/screens/ScoreScreen';
 import ConfigScreen from './src/screens/ConfigScreen';
 
 const App = StackNavigator({
@@ -16,7 +17,14 @@ const App = StackNavigator({
 		screen: GameScreen,
 		navigationOptions: {
 			header: null
-		}},
+		}
+	},
+	Score: {
+		screen: ScoreScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
 	Config: {
 		screen: ConfigScreen
 	}
