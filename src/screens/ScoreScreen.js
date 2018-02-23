@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import { Text, Button, StyleSheet, View } from 'react-native';
 
-export default class ScoreScreen extends React.Component {
+type ScoreScreenProps = {
+	navigation: Object,
+	score: Array
+}
+
+class ScoreScreen extends React.Component<ScoreScreenProps> {
 	render() {
 		const {navigate} = this.props.navigation;
 		return ( 
@@ -10,16 +15,18 @@ export default class ScoreScreen extends React.Component {
 				<Text>
 					Well Done!
 				</Text>
+				<Text>
+					Your reaction times are:
+				</Text>
+				<Text>
+					{this.props.score.join(', ')}
+				</Text>
 				<Button onPress={() => navigate('Home')} title="Go back to Home Screen">
 				</Button>
 			</View>
 		); 
 	}
 }
-
-ScoreScreen.propTypes = {
-	navigation: PropTypes.object.isRequired
-};
 
 const styles = StyleSheet.create({
 	container: {
@@ -29,3 +36,11 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+const mapStateToProps = state => ({
+	score: state.scores[state.scores.length - 1]
+});
+
+const ConnectedScoreScreen = connect(mapStateToProps)(ScoreScreen);
+
+export default ConnectedScoreScreen;

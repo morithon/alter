@@ -1,17 +1,27 @@
 import GAME_STATES from '../components/gameStates';
-import { CHANGE_GAME_STATE } from '../actions/actionTypes';
+import { CHANGE_GAME_STATE, ADD_SCORE } from '../actions/actionTypes';
 
 const initialState = {
-	gameState: GAME_STATES.Countdown
+	gameState: GAME_STATES.Countdown,
+	scores: []
 };
 
 const rootReducer = (state = initialState, action) => {
-	if (action.type === CHANGE_GAME_STATE) {
+	switch (action.type) {
+	case CHANGE_GAME_STATE: {
 		const {gameState} = action;
-		return {...state, ...{gameState}};
+		return {...state, gameState};
 	}
-
-	return state;
+	case ADD_SCORE: {
+		const {score} = action;
+		return {
+			...state,
+			scores: [...state.scores, score]
+		};
+	}
+	default:
+		return state;
+	}
 };
 
 export default rootReducer;

@@ -59,7 +59,7 @@ const getOrderedValues = (focusOnValue, focusAwayFromValue) => {
 	};
 
 	return newValues;
-}
+};
 
 const getValueOrderArray = () => {
 	const valueOrder = [];

@@ -1,18 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {View } from 'react-native';
 
 import ValueDisplay from './ValueDisplay';
 import Divider from './Divider';
 import wordsGenerator from './wordsGenerator';
+import addScore from '../actions/addScore';
 
 type GameplayProps = {
 	onGameEnd: Function;
+	addScore: Function;
 };
 
 class Gameplay extends React.Component<GameplayProps> {
 	displayWordsInterval = 500;
 	feedbackInterval = 700;
-	numberOfRounds = 1;
+	numberOfRounds = 5;
 
 	constructor(props) {
 		super(props);
@@ -23,7 +26,9 @@ class Gameplay extends React.Component<GameplayProps> {
 			roundNumber: 0,
 			mode: 'displayValues',
 			topValue: {},
-			bottomValue: {}
+			bottomValue: {},
+			waitForTouchStartTime: null,
+			score: []
 		};
 	}
 
@@ -37,14 +42,23 @@ class Gameplay extends React.Component<GameplayProps> {
 
 	startWordsShownTimeout() {
 		setTimeout(() => {
-			this.setState({mode: 'waitForTouch'});
+			this.setState({
+				mode: 'waitForTouch',
+				waitForTouchStartTime: Date.now()
+			});
 		}, this.displayWordsInterval);
 	}
 
 	handlePress(result) {
 		const mode = result ? 'success' : 'failure';
 
-		this.setState({mode});
+		const score = Date.now() - this.state.waitForTouchStartTime;
+
+		this.setState(oldState => ({
+			mode,
+			waitForTouchStartTime: null,
+			score: [...oldState.score, score]
+		}));
 
 		setTimeout(this.checkForNextRound.bind(this), this.feedbackInterval);
 	}
@@ -53,6 +67,7 @@ class Gameplay extends React.Component<GameplayProps> {
 		if (this.shouldRunNextRound()) {
 			this.runNextRound();
 		} else {
+			this.props.addScore(this.state.score);
 			this.props.onGameEnd();
 		}
 	}
@@ -106,4 +121,10 @@ class Gameplay extends React.Component<GameplayProps> {
 	}
 }
 
-export default Gameplay;
+const mapDispatchToProps = dispatch => ({
+	addScore: (score) => dispatch(addScore(score))
+});
+
+const GameplayComponent = connect(() => ({}), mapDispatchToProps)(Gameplay);
+
+export default GameplayComponent;
