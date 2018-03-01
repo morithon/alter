@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render matches snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "flex": 1,
+      },
+      Object {
+        "backgroundColor": "green",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`render matches snapshot 2`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "white",
+        "flex": 1,
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+    ]
+  }
+/>
+`;

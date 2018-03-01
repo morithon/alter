@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render matches snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "skyblue",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      Keep score
+    </Text>
+    <RCTSwitch
+      disabled={false}
+      onChange={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      onValueChange={[Function]}
+      style={
+        Array [
+          Object {
+            "height": 31,
+            "width": 51,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
+      }
+      value={true}
+    />
+  </View>
+</View>
+`;
+
+exports[`updates config value 1`] = `
+Object {
+  "keepScore": false,
+}
+`;

@@ -1,8 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Button, StyleSheet, View } from 'react-native';
 
-export default class HomeScreen extends React.Component {
+type HomeScreenProps = {
+	navigation: {
+		navigate: Function;
+	};
+};
+
+export default class HomeScreen extends React.Component<HomeScreenProps> {
 	static navigationOptions = {
 		title: 'ABM'
 	}
@@ -21,10 +26,6 @@ export default class HomeScreen extends React.Component {
 		); 
 	}
 }
-
-HomeScreen.propTypes = {
-	navigation: PropTypes.object.isRequired
-};
 
 const styles = StyleSheet.create({
 	container: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -15,25 +14,12 @@ const styles = StyleSheet.create({
 	}
 });
 
-const Divider = ({isSuccess}) => {
-	const getStyle = (isSuccess) => {
-		if (isSuccess === true) {
-			return styles.success;
-		} else if (isSuccess === false) {
-			return styles.failure;
-		} else {
-			return;
-		}
-	};
-
-	return (
-		<View style={[styles.divider, getStyle(isSuccess)]}>
-		</View>
-	);
+type DividerProps = {
+	isSuccess: boolean;
 };
 
-Divider.propTypes = {
-	isSuccess: PropTypes.bool
-};
+const getStyle = isSuccess => isSuccess ? styles.success : styles.failure;
+
+const Divider = ({isSuccess}: DividerProps) => <View style={[styles.divider, getStyle(isSuccess)]}/>;
 
 export default Divider;

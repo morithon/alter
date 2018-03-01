@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {View } from 'react-native';
 
 import ValueDisplay from './ValueDisplay';
-import Divider from './Divider';
+import PentagonDivider from './PentagonDivider';
 import wordsGenerator from './wordsGenerator';
 import addScore from '../actions/addScore';
 
@@ -52,7 +52,7 @@ class Gameplay extends React.Component<GameplayProps> {
 	handlePress(result) {
 		const mode = result ? 'success' : 'failure';
 
-		const score = Date.now() - this.state.waitForTouchStartTime;
+		const score = this.calculateScore();
 
 		this.setState(oldState => ({
 			mode,
@@ -61,6 +61,11 @@ class Gameplay extends React.Component<GameplayProps> {
 		}));
 
 		setTimeout(this.checkForNextRound.bind(this), this.feedbackInterval);
+	}
+
+	calculateScore() {
+		const timeElapsed = Date.now() - this.state.waitForTouchStartTime;
+		return timeElapsed;
 	}
 
 	checkForNextRound() {
@@ -113,7 +118,7 @@ class Gameplay extends React.Component<GameplayProps> {
 			<View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center'}}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<Divider isSuccess={this.getIsSuccess()}></Divider>
+				<PentagonDivider isSuccess={this.getIsSuccess()}/>
 
 				{this.renderValueDisplay(this.state.bottomValue)}
 			</View>

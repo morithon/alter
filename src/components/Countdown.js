@@ -1,12 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Text, View } from 'react-native';
 
 import changeGameState from '../actions/changeGameState';
 import GAME_STATES from './gameStates';
 
-class Countdown extends React.Component {
+type CountdownProps = {
+	onCountdownEnd: Function;
+};
+
+class Countdown extends React.Component<CountdownProps> {
 	countdownInterval = 800;
 	countdownFrom = 1;
 
@@ -55,10 +58,6 @@ class Countdown extends React.Component {
 		);
 	}
 }
-
-Countdown.propTypes = {
-	onCountdownEnd: PropTypes.func.isRequired
-};
 
 const mapDispatchToProps = dispatch => ({
 	onCountdownEnd: () => dispatch(changeGameState(GAME_STATES.Playing))

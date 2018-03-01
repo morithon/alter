@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,7 +19,14 @@ const styles = StyleSheet.create({
 	}
 });
 
-const ValueDisplay = ({mode, value, focusOn, onPress}) => (
+type ValueDisplayProps = {
+	mode: 'displayValues' | 'waitForTouch';
+	value: string;
+	focusOn: boolean;
+	onPress: Function;
+};
+
+const ValueDisplay = ({mode, value, focusOn, onPress}: ValueDisplayProps) => (
 	<View style={styles.container}>
 		{mode === 'displayValues' && (
 			<View style={styles.wordContainer}>
@@ -39,12 +45,5 @@ const ValueDisplay = ({mode, value, focusOn, onPress}) => (
 		)}
 	</View>
 );
-
-ValueDisplay.propTypes = {
-	mode: PropTypes.string.isRequired,
-	value: PropTypes.string,
-	focusOn: PropTypes.bool,
-	onPress: PropTypes.func.isRequired
-};
 
 export default ValueDisplay;

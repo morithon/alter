@@ -1,4 +1,3 @@
-
 const GAME_STATES = {
 	Countdown: 'COUNTDOWN',
 	Playing: 'PLAYING'
