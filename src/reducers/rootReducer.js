@@ -7,9 +7,13 @@ const initialState = {
 	score: 0
 };
 
-const calculateScore = (waitForUserPressStartTime, userPressTime) => {
-	const timeElapsed = userPressTime - waitForUserPressStartTime;
-	return Math.max(-1 * (timeElapsed / 20) + 100, 0);
+const getRoundScore = (isSuccess, startTime, userPressTime) => {
+	if (!isSuccess) {
+		return 0;
+	}
+
+	const timeElapsed = userPressTime - startTime;
+	return Math.max(-1 * timeElapsed + 2000, 0);
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -19,20 +23,20 @@ const rootReducer = (state = initialState, action) => {
 		return {...state, gameState};
 	}
 	case WAIT_FOR_USER_PRESS: {
-		const {gameState, waitForUserPressTimeStart} = action;
+		const {gameState, startTime} = action;
 		return {
 			...state,
 			gameState,
-			waitForUserPressTimeStart
+			startTime
 		};
 	}
 	case HANDLE_WORD_PRESS: {
-		const {gameState, userPressTime, waitForUserPressStartTime} = action;
+		const {gameState, userPressTime, startTime, isSuccess} = action;
 		return {
 			...state,
 			gameState,
-			score: state.score + calculateScore(waitForUserPressStartTime, userPressTime),
-			waitForUserPressStartTime
+			score: state.score + getRoundScore(isSuccess, state.startTime, userPressTime),
+			startTime
 		};
 	}
 	case END_GAME: {
