@@ -1,5 +1,5 @@
 import React from 'react';
-import ValueDisplay from './ValueDisplay';
+import ValueDisplay from '../ValueDisplay';
 
 import renderer from 'react-test-renderer';
 

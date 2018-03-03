@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ConfigScreen from './ConfigScreen';
+import ConfigScreen from '../ConfigScreen';
 
 import renderer from 'react-test-renderer';
 
