@@ -3,13 +3,21 @@ import {connect} from 'react-redux';
 import {View } from 'react-native';
 
 import ValueDisplay from './ValueDisplay';
-import PentagonDivider from './PentagonDivider';
+import Divider from './Divider';
 import wordsGenerator from './wordsGenerator';
-import addScore from '../actions/addScore';
+import handleWordPress from '../actions/handleWordPress';
+import waitForUserPress from '../actions/waitForUserPress';
+import endGame from '../actions/endGame';
+import changeGameState from '../actions/changeGameState';
+import GAME_STATES from './gameStates';
 
 type GameplayProps = {
+	displayValues: Function;
+	waitForUserPress: Function;
+	handleWordPress: Function;
+	endGame: Function;
 	onGameEnd: Function;
-	addScore: Function;
+	mode: string;
 };
 
 class Gameplay extends React.Component<GameplayProps> {
@@ -24,11 +32,8 @@ class Gameplay extends React.Component<GameplayProps> {
 
 		this.state = {
 			roundNumber: 0,
-			mode: 'displayValues',
 			topValue: {},
-			bottomValue: {},
-			waitForTouchStartTime: null,
-			score: []
+			bottomValue: {}
 		};
 	}
 
@@ -42,37 +47,21 @@ class Gameplay extends React.Component<GameplayProps> {
 
 	startWordsShownTimeout() {
 		setTimeout(() => {
-			this.setState({
-				mode: 'waitForTouch',
-				waitForTouchStartTime: Date.now()
-			});
+			this.props.waitForUserPress();
 		}, this.displayWordsInterval);
 	}
 
 	handlePress(result) {
-		const mode = result ? 'success' : 'failure';
-
-		const score = this.calculateScore();
-
-		this.setState(oldState => ({
-			mode,
-			waitForTouchStartTime: null,
-			score: [...oldState.score, score]
-		}));
+		this.props.handleWordPress(result);
 
 		setTimeout(this.checkForNextRound.bind(this), this.feedbackInterval);
-	}
-
-	calculateScore() {
-		const timeElapsed = Date.now() - this.state.waitForTouchStartTime;
-		return -1 * (timeElapsed / 20) + 100;
 	}
 
 	checkForNextRound() {
 		if (this.shouldRunNextRound()) {
 			this.runNextRound();
 		} else {
-			this.props.addScore(this.state.score);
+			this.props.endGame();
 			this.props.onGameEnd();
 		}
 	}
@@ -85,17 +74,18 @@ class Gameplay extends React.Component<GameplayProps> {
 		this.setState(currentState =>
 			({
 				roundNumber: ++currentState.roundNumber,
-				mode: 'displayValues',
 				...this.wordsGenerator.next().value
 			}));
+
+		this.props.displayValues();
 
 		this.startWordsShownTimeout();
 	}
 
 	getIsSuccess() {
-		if (this.state.mode === 'success') {
+		if (this.props.mode === GAME_STATES.Success) {
 			return true;
-		} else if (this.state.mode === 'failure') {
+		} else if (this.props.mode === GAME_STATES.Failure) {
 			return false;
 		} else {
 			return;
@@ -105,7 +95,7 @@ class Gameplay extends React.Component<GameplayProps> {
 	renderValueDisplay(word) {
 		return (
 			<ValueDisplay
-				mode={this.state.mode}
+				mode={this.props.mode}
 				value={word.value}
 				focusOn={word.focusOn}
 				onPress={this.handlePress.bind(this)}
@@ -118,7 +108,7 @@ class Gameplay extends React.Component<GameplayProps> {
 			<View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center'}}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<PentagonDivider isSuccess={this.getIsSuccess()}/>
+				<Divider isSuccess={this.getIsSuccess()}/>
 
 				{this.renderValueDisplay(this.state.bottomValue)}
 			</View>
@@ -126,10 +116,17 @@ class Gameplay extends React.Component<GameplayProps> {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
-	addScore: (score) => dispatch(addScore(score))
+const mapStateToProps = state => ({
+	mode: state.gameState
 });
 
-const GameplayComponent = connect(() => ({}), mapDispatchToProps)(Gameplay);
+const mapDispatchToProps = dispatch => ({
+	waitForUserPress: () => dispatch(waitForUserPress()),
+	handleWordPress: isSuccess => dispatch(handleWordPress(isSuccess)),
+	endGame: () => dispatch(endGame()),
+	displayValues: () => dispatch(changeGameState(GAME_STATES.DisplayValues))
+});
+
+const GameplayComponent = connect(mapStateToProps, mapDispatchToProps)(Gameplay);
 
 export default GameplayComponent;

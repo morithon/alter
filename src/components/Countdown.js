@@ -60,7 +60,7 @@ class Countdown extends React.Component<CountdownProps> {
 }
 
 const mapDispatchToProps = dispatch => ({
-	onCountdownEnd: () => dispatch(changeGameState(GAME_STATES.Playing))
+	onCountdownEnd: () => dispatch(changeGameState(GAME_STATES.DisplayValues))
 });
 
 const CountdownComponent = connect(() => ({}), mapDispatchToProps)(Countdown);

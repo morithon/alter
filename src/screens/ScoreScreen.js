@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import { Text, Button, StyleSheet, View } from 'react-native';
 
 type ScoreScreenProps = {
-	navigation: Object,
-	score: Array
+	navigation: Object;
+	score: Array;
+	scores: Array;
 }
 
 class ScoreScreen extends React.Component<ScoreScreenProps> {
@@ -16,10 +17,10 @@ class ScoreScreen extends React.Component<ScoreScreenProps> {
 					Well Done!
 				</Text>
 				<Text>
-					Your reaction times are:
+					Your score is:
 				</Text>
 				<Text>
-					{this.props.score.join(', ')}
+					{this.props.score}
 				</Text>
 				<Button onPress={() => navigate('Home')} title="Go back to Home Screen">
 				</Button>

@@ -1,6 +1,9 @@
 const GAME_STATES = {
 	Countdown: 'COUNTDOWN',
-	Playing: 'PLAYING'
+	DisplayValues: 'DISPLAY_VALUES',
+	WaitForUserPress: 'WAIT_FOR_USER_PRESS',
+	Success: 'SUCCESS',
+	Failure: 'FAILURE'
 };
 
 export default GAME_STATES;

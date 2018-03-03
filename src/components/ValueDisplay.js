@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import GAME_STATES from './gameStates';
 
 const styles = StyleSheet.create({
 	container: {
@@ -28,12 +29,12 @@ type ValueDisplayProps = {
 
 const ValueDisplay = ({mode, value, focusOn, onPress}: ValueDisplayProps) => (
 	<View style={styles.container}>
-		{mode === 'displayValues' && (
+		{mode === GAME_STATES.DisplayValues && (
 			<View style={styles.wordContainer}>
 				<Text style={styles.text}>{value}</Text>
 			</View>
 		)}
-		{mode === 'waitForTouch' && (
+		{mode === GAME_STATES.WaitForUserPress && (
 			<TouchableHighlight
 				style={styles.wordContainer}
 				onPress={() => onPress(focusOn)}

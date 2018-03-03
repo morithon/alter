@@ -1,9 +1,15 @@
 import GAME_STATES from '../components/gameStates';
-import { CHANGE_GAME_STATE, ADD_SCORE } from '../actions/actionTypes';
+import { CHANGE_GAME_STATE, HANDLE_WORD_PRESS, WAIT_FOR_USER_PRESS, END_GAME} from '../actions/actionTypes';
 
 const initialState = {
 	gameState: GAME_STATES.Countdown,
-	scores: []
+	scores: [],
+	score: 0
+};
+
+const calculateScore = (waitForUserPressStartTime, userPressTime) => {
+	const timeElapsed = userPressTime - waitForUserPressStartTime;
+	return Math.max(-1 * (timeElapsed / 20) + 100, 0);
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,11 +18,28 @@ const rootReducer = (state = initialState, action) => {
 		const {gameState} = action;
 		return {...state, gameState};
 	}
-	case ADD_SCORE: {
-		const {score} = action;
+	case WAIT_FOR_USER_PRESS: {
+		const {gameState, waitForUserPressTimeStart} = action;
 		return {
 			...state,
-			scores: [...state.scores, score]
+			gameState,
+			waitForUserPressTimeStart
+		};
+	}
+	case HANDLE_WORD_PRESS: {
+		const {gameState, userPressTime, waitForUserPressStartTime} = action;
+		return {
+			...state,
+			gameState,
+			score: state.score + calculateScore(waitForUserPressStartTime, userPressTime),
+			waitForUserPressStartTime
+		};
+	}
+	case END_GAME: {
+		return {
+			...state,
+			scores: [...state.scores, state.score],
+			score: 0
 		};
 	}
 	default:

@@ -14,16 +14,15 @@ class GameScreen extends React.Component<Props> {
 		const {gameState, navigation} = this.props;
 		if (gameState === GAME_STATES.Countdown) {
 			return (
-				<Countdown>
-				</Countdown>
+				<Countdown/>
 			);
-		} else if (gameState === GAME_STATES.Playing) {
-			return ( 
-				<Gameplay
-					onGameEnd={() => navigation.navigate('Score')}>
-				</Gameplay>
-			); 
 		}
+		
+		return ( 
+			<Gameplay
+				onGameEnd={() => navigation.navigate('Score')}>
+			</Gameplay>
+		); 
 	}
 }
 

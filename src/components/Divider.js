@@ -15,10 +15,18 @@ const styles = StyleSheet.create({
 });
 
 type DividerProps = {
-	isSuccess: boolean;
+	isSuccess?: boolean;
 };
 
-const getStyle = isSuccess => isSuccess ? styles.success : styles.failure;
+const getStyle = isSuccess => {
+	if (isSuccess === true) {
+		return styles.success;
+	} else if (isSuccess === false) {
+		return styles.failure;
+	}
+
+	return;
+};
 
 const Divider = ({isSuccess}: DividerProps) => <View style={[styles.divider, getStyle(isSuccess)]}/>;
 
