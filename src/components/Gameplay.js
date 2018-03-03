@@ -65,7 +65,7 @@ class Gameplay extends React.Component<GameplayProps> {
 
 	calculateScore() {
 		const timeElapsed = Date.now() - this.state.waitForTouchStartTime;
-		return timeElapsed;
+		return -1 * (timeElapsed / 20) + 100;
 	}
 
 	checkForNextRound() {

@@ -1,42 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1519936557818" clover="3.2.0">
-  <project timestamp="1519936557819" name="All files">
-    <metrics statements="17" coveredstatements="14" conditionals="8" coveredconditionals="8" methods="10" coveredmethods="7" elements="35" coveredelements="29" complexity="0" loc="17" ncloc="17" packages="2" files="4" classes="4">
-      <package name="components">
-        <metrics statements="7" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="3"/>
-        <file name="Divider.js" path="/Users/michalzamorski/Documents/Projekty/ABM/src/components/Divider.js">
-          <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
-          <line num="23" count="2" type="stmt"/>
-        </file>
-        <file name="ValueDisplay.js" path="/Users/michalzamorski/Documents/Projekty/ABM/src/components/ValueDisplay.js">
-          <metrics statements="4" coveredstatements="3" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="1"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="29" count="1" type="stmt"/>
-          <line num="30" count="3" type="stmt"/>
-          <line num="39" count="0" type="stmt"/>
-        </file>
-      </package>
-      <package name="screens">
-        <metrics statements="10" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
-        <file name="ConfigScreen.js" path="/Users/michalzamorski/Documents/Projekty/ABM/src/screens/ConfigScreen.js">
-          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-          <line num="4" count="1" type="stmt"/>
-          <line num="10" count="2" type="stmt"/>
-          <line num="12" count="2" type="stmt"/>
-          <line num="16" count="1" type="stmt"/>
-          <line num="20" count="3" type="stmt"/>
-        </file>
-        <file name="HomeScreen.js" path="/Users/michalzamorski/Documents/Projekty/ABM/src/screens/HomeScreen.js">
-          <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-          <line num="16" count="1" type="stmt"/>
-          <line num="17" count="1" type="stmt"/>
-          <line num="20" count="0" type="stmt"/>
-          <line num="22" count="0" type="stmt"/>
-          <line num="30" count="1" type="stmt"/>
-        </file>
-      </package>
+<coverage generated="1519974711358" clover="3.2.0">
+  <project timestamp="1519974711358" name="All files">
+    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0">
     </metrics>
   </project>
 </coverage>
