@@ -4,7 +4,7 @@ import GAME_STATES from './gameStates';
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 20,
+		flex: 1,
 		backgroundColor: 'skyblue',
 		alignItems: 'stretch',
 		justifyContent: 'center'

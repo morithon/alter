@@ -22,7 +22,6 @@ type GameplayProps = {
 
 class Gameplay extends React.Component<GameplayProps> {
 	displayWordsInterval = 500;
-	feedbackInterval = 700;
 	numberOfRounds = 5;
 
 	constructor(props) {
@@ -53,8 +52,6 @@ class Gameplay extends React.Component<GameplayProps> {
 
 	handlePress(result) {
 		this.props.handleWordPress(result);
-
-		setTimeout(this.checkForNextRound.bind(this), this.feedbackInterval);
 	}
 
 	checkForNextRound() {
@@ -94,12 +91,14 @@ class Gameplay extends React.Component<GameplayProps> {
 
 	renderValueDisplay(word) {
 		return (
-			<ValueDisplay
-				mode={this.props.mode}
-				value={word.value}
-				focusOn={word.focusOn}
-				onPress={this.handlePress.bind(this)}
-			></ValueDisplay>
+			<View style={{flex: 20}}>
+				<ValueDisplay
+					mode={this.props.mode}
+					value={word.value}
+					focusOn={word.focusOn}
+					onPress={this.handlePress.bind(this)}
+				/>
+			</View>
 		);
 	}
 
@@ -108,7 +107,12 @@ class Gameplay extends React.Component<GameplayProps> {
 			<View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center'}}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<Divider isSuccess={this.getIsSuccess()}/>
+				<View style={{flex: 1}}>
+					<Divider
+						isSuccess={this.getIsSuccess()}
+						onFadeOut={this.checkForNextRound.bind(this)}
+					/>
+				</View>
 
 				{this.renderValueDisplay(this.state.bottomValue)}
 			</View>
