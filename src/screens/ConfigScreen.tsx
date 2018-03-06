@@ -1,13 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 import {Text, View, Switch} from 'react-native';
 
 const initialSettings = {
 	keepScore: true
 };
 
-export default class GameScreen extends React.Component {
-	constructor() {
-		super();
+export interface ConfigScreenState {
+	keepScore: boolean;
+}
+
+export default class ConfigScreen extends React.Component<{}, ConfigScreenState> {
+	constructor(props) {
+		super(props);
 
 		this.state = {...initialSettings};
 	}

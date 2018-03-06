@@ -1,8 +1,9 @@
-import GAME_STATES from '../components/gameStates';
+import AppState from '../interfaces/AppState';
+import {GameStates} from '../components/GameStates';
 import { CHANGE_GAME_STATE, HANDLE_WORD_PRESS, WAIT_FOR_USER_PRESS, END_GAME} from '../actions/actionTypes';
 
 const initialState = {
-	gameState: GAME_STATES.Countdown,
+	gameState: GameStates.COUNTDOWN,
 	scores: [],
 	score: 0
 };
@@ -16,7 +17,7 @@ const getRoundScore = (isSuccess, startTime, userPressTime) => {
 	return Math.max(-1 * timeElapsed + 2000, 0);
 };
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state: AppState = initialState, action) => {
 	switch (action.type) {
 	case CHANGE_GAME_STATE: {
 		const {gameState} = action;

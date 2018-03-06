@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Text, Button, StyleSheet, View } from 'react-native';
+import {NavigationScreenProps} from 'react-navigation';
 
-type ScoreScreenProps = {
-	navigation: Object;
-	score: Array;
-	scores: Array;
+interface ScoreScreenProps {
+	score: number;
+	scores: number[];
 }
 
-class ScoreScreen extends React.Component<ScoreScreenProps> {
+class ScoreScreen extends React.Component<ScoreScreenProps & NavigationScreenProps> {
 	render() {
 		const {navigate} = this.props.navigation;
 		return ( 

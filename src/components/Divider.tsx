@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import { withFadeInAndOutAnimation } from './withFadeAnimation';
+import { withFadeInAndOutAnimation } from './withFadeInAndOutAnimation';
 
 const styles = StyleSheet.create({
 	divider: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-type DividerProps = {
+interface DividerProps {
 	isSuccess?: boolean;
 };
 
@@ -32,4 +32,4 @@ const Divider = ({isSuccess}: DividerProps) => <View style={[styles.divider, get
 
 const shouldStartAnimation = (prevProps, props) => typeof props.isSuccess === 'boolean' && prevProps.isSuccess !== props.isSuccess;
 
-export default withFadeInAndOutAnimation(Divider, shouldStartAnimation);
+export default withFadeInAndOutAnimation<DividerProps>(Divider, shouldStartAnimation);

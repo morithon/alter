@@ -1,18 +1,19 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
+import {NavigationScreenProps} from 'react-navigation';
+
 import Countdown from '../components/Countdown';
-import GAME_STATES from '../components/gameStates';
+import {GameStates} from '../components/GameStates';
 import Gameplay from '../components/Gameplay';
 
-type Props = {
+interface GameScreenProps {
 	gameState: string;
-	navigation: Object;
 };
 
-class GameScreen extends React.Component<Props> {
+class GameScreen extends React.Component<GameScreenProps & NavigationScreenProps, {}> {
 	render() {
 		const {gameState, navigation} = this.props;
-		if (gameState === GAME_STATES.Countdown) {
+		if (gameState === GameStates.COUNTDOWN) {
 			return (
 				<Countdown/>
 			);

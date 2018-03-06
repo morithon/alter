@@ -1,13 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
+import {NavigationScreenProp} from 'react-navigation';
 
-type HomeScreenProps = {
-	navigation: {
-		navigate: Function;
-	};
+export interface HomeScreenProps {
+	navigation: NavigationScreenProp<{}>;
 };
 
-export default class HomeScreen extends React.Component<HomeScreenProps> {
+export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 	static navigationOptions = {
 		title: 'ABM'
 	}

@@ -3,15 +3,20 @@ import {connect} from 'react-redux';
 import {Text, View } from 'react-native';
 
 import changeGameState from '../actions/changeGameState';
-import GAME_STATES from './gameStates';
+import {GameStates} from './GameStates';
 
-type CountdownProps = {
-	onCountdownEnd: Function;
+interface CountdownProps {
+	onCountdownEnd: () => null;
 };
 
-class Countdown extends React.Component<CountdownProps> {
+interface CountdownState {
+	countdownToGame: number;
+}
+
+class Countdown extends React.Component<CountdownProps, CountdownState> {
 	countdownInterval = 800;
 	countdownFrom = 1;
+	intervalId: number | null = null;
 
 	constructor(props) {
 		super(props);
@@ -60,7 +65,7 @@ class Countdown extends React.Component<CountdownProps> {
 }
 
 const mapDispatchToProps = dispatch => ({
-	onCountdownEnd: () => dispatch(changeGameState(GAME_STATES.DisplayValues))
+	onCountdownEnd: () => dispatch(changeGameState(GameStates.DISPLAY_VALUES))
 });
 
 const CountdownComponent = connect(() => ({}), mapDispatchToProps)(Countdown);

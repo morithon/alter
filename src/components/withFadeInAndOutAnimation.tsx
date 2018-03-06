@@ -1,14 +1,18 @@
 import React from 'react';
 import {Animated} from 'react-native';
 
-type WithFadeInAndOutAnimationProps = {
-	fadeToDuration: number;
-	showForDuration: number;
-	onFadeOut: Function;
+interface WithFadeInAndOutAnimationProps {
+	fadeToDuration?: number;
+	showForDuration?: number;
+	onFadeOut: () => null;
 };
 
-export function withFadeInAndOutAnimation(WrappedComponent, shouldStartAnimation) {
-	return class WithFadeAnimation extends React.Component<WithFadeInAndOutAnimationProps> {
+interface WithFadeInAndOutAnimationState {
+	fadeAnim: Animated.Value;
+}
+
+export function withFadeInAndOutAnimation<T>(WrappedComponent, shouldStartAnimation) {
+	return class WithFadeAnimation extends React.Component<T & WithFadeInAndOutAnimationProps, WithFadeInAndOutAnimationState> {
 		static defaultProps = {
 			fadeToDuration: 200,
 			showForDuration: 100
