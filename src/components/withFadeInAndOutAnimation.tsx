@@ -4,21 +4,30 @@ import {Animated} from 'react-native';
 interface WithFadeInAndOutAnimationProps {
 	fadeToDuration?: number;
 	showForDuration?: number;
-	onFadeOut: () => null;
+	onFadeOut?: () => null;
 };
 
 interface WithFadeInAndOutAnimationState {
 	fadeAnim: Animated.Value;
 }
 
-export function withFadeInAndOutAnimation<T>(WrappedComponent, shouldStartAnimation) {
-	return class WithFadeAnimation extends React.Component<T & WithFadeInAndOutAnimationProps, WithFadeInAndOutAnimationState> {
+export type FadeInAndOutAnimationProps<T> = T & WithFadeInAndOutAnimationProps;
+
+type shouldStartAnimationFn<T> =
+	(prevProps: FadeInAndOutAnimationProps<T>, props: Readonly<FadeInAndOutAnimationProps<T>>) => boolean
+
+export function withFadeInAndOutAnimation<T>(
+	WrappedComponent: React.ComponentType<T>,
+	shouldStartAnimation: shouldStartAnimationFn<T>
+) {
+	return class extends React.Component<FadeInAndOutAnimationProps<T>, WithFadeInAndOutAnimationState> {
 		static defaultProps = {
 			fadeToDuration: 200,
-			showForDuration: 100
+			showForDuration: 100,
+			onFadeOut: () => {}
 		}
 
-		constructor(props) {
+		constructor(props: FadeInAndOutAnimationProps<T>) {
 			super(props);
 
 			this.state = {
@@ -26,29 +35,29 @@ export function withFadeInAndOutAnimation<T>(WrappedComponent, shouldStartAnimat
 			};
 		}
 
-		componentDidUpdate(prevProps) {
+		componentDidMount() {
+			if (shouldStartAnimation({} as T, this.props)) {
+				this.fadeIn();
+			}
+		}
+
+		componentDidUpdate(prevProps: FadeInAndOutAnimationProps<T>) {
 			if (shouldStartAnimation(prevProps, this.props)) {
 				this.fadeIn();
 			}
 		}
 
 		fadeIn() {
-			this.fadeTo({
-				toValue: 1,
-				callback: this.fadeOut.bind(this)
-			});		
+			this.fadeTo(1, this.fadeOut.bind(this));		
 		}
 
 		fadeOut() {
-			this.fadeTo({
-				toValue: 0,
-				delay: this.props.showForDuration,
-				callback: this.props.onFadeOut
-			});
+			this.fadeTo(0, this.props.onFadeOut as () => null, this.props.showForDuration as number);
 		}
 
-		fadeTo({toValue, callback, delay = 0}) {
-			Animated.timing(this.state.fadeAnim, {toValue, delay, duration: this.props.fadeToDuration}).start(callback);
+		fadeTo(toValue: number, callback: () => null, delay: number = 0) {
+			const config = {toValue, delay, duration: this.props.fadeToDuration};
+			Animated.timing(this.state.fadeAnim, config).start(callback);
 		}
 
 		render() {

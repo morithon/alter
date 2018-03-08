@@ -38,7 +38,6 @@ export interface GameplayState {
 
 class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	wordsGenerator = wordsGenerator();
-	displayWordsInterval = 500;
 	numberOfRounds = 5;
 
 	constructor(props) {
@@ -55,12 +54,6 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 
 	startGame() {
 		this.runNextRound();
-	}
-
-	startWordsShownTimeout() {
-		setTimeout(() => {
-			this.props.waitForUserPress();
-		}, this.displayWordsInterval);
 	}
 
 	handlePress(result) {
@@ -88,8 +81,6 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 			}));
 
 		this.props.displayValues();
-
-		this.startWordsShownTimeout();
 	}
 
 	getIsSuccess() {
@@ -103,6 +94,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	}
 
 	renderValueDisplay(word) {
+		const onWordFadeOut = word.focusOn ? this.props.waitForUserPress : undefined;
 		return (
 			<View style={{flex: 20}}>
 				<ValueDisplay
@@ -110,6 +102,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 					value={word.value}
 					focusOn={word.focusOn}
 					onPress={this.handlePress.bind(this)}
+					onWordFadeOut={onWordFadeOut}
 				/>
 			</View>
 		);
