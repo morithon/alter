@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	success: {
-		backgroundColor: 'green'
+		backgroundColor: '#4caf50'
 	},
 	failure: {
-		backgroundColor: 'red'
+		backgroundColor: '#f44336'
 	}
 });
 

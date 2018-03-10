@@ -1,10 +1,10 @@
 import {HANDLE_WORD_PRESS} from './actionTypes';
 import {GameStates} from '../components/GameStates';
+import HandleWordPressAction from '../interfaces/HandleWordPressAction';
 
-export default (isSuccess) => ({
+export default (isSuccess: boolean): HandleWordPressAction => ({
 	type: HANDLE_WORD_PRESS,
 	isSuccess,
-	gameState: isSuccess ? GameStates.SUCCESS : GameStates.FAILURE,
 	userPressTime: Date.now(),
 	startTime: null
 });

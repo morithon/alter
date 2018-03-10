@@ -4,9 +4,12 @@ import {Text, View } from 'react-native';
 
 import changeGameState from '../actions/changeGameState';
 import {GameStates} from './GameStates';
+import { Dispatch } from 'redux';
+import { AppAction } from '../interfaces/AppAction';
+import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
 
 interface CountdownProps {
-	onCountdownEnd: () => null;
+	onCountdownEnd: () => ChangeGameStateAction;
 };
 
 interface CountdownState {
@@ -15,10 +18,10 @@ interface CountdownState {
 
 class Countdown extends React.Component<CountdownProps, CountdownState> {
 	countdownInterval = 800;
-	countdownFrom = 1;
+	countdownFrom = 3;
 	intervalId: number | null = null;
 
-	constructor(props) {
+	constructor(props: CountdownProps) {
 		super(props);
 		this.state = {
 			countdownToGame: this.countdownFrom
@@ -48,7 +51,10 @@ class Countdown extends React.Component<CountdownProps, CountdownState> {
 	}
 
 	stopCountdown() {
-		clearInterval(this.intervalId);
+		if (this.intervalId !== null) {
+			clearInterval(this.intervalId);
+		}
+
 		this.intervalId = null;
 		this.props.onCountdownEnd();
 	}
@@ -64,7 +70,7 @@ class Countdown extends React.Component<CountdownProps, CountdownState> {
 	}
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch<AppAction>) => ({
 	onCountdownEnd: () => dispatch(changeGameState(GameStates.DISPLAY_VALUES))
 });
 

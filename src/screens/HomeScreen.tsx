@@ -16,9 +16,9 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 		return ( 
 			<View style={styles.container}>
 				<View> 
-					<Button onPress={() => navigate('Game')} title="Start">
+					<Button color="#01579b" onPress={() => navigate('Game')} title="Start">
 					</Button>
-					<Button onPress={() => navigate('Config')} title="Config">
+					<Button color="#03a9f4" onPress={() => navigate('Config')} title="Config">
 					</Button>
 				</View>
 			</View>
@@ -29,7 +29,7 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#b3e5fc',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

@@ -6,7 +6,7 @@ import Word from './Word';
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'skyblue',
+		backgroundColor: '#4fc3f7',
 	},
 	text: {
 		fontSize: 42,
@@ -24,7 +24,7 @@ export interface ValueDisplayProps {
 	value: string;
 	focusOn: boolean;
 	onPress: (focusOn: boolean) => null;
-	onWordFadeOut?: () => null;
+	onWordFadeOut?: () => any;
 };
 
 const ValueDisplay = ({mode, value, focusOn, onPress, onWordFadeOut}: ValueDisplayProps) => (

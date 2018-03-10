@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {connect, Dispatch} from 'react-redux';
 import {View} from 'react-native';
 
 import AppState from '../interfaces/AppState';
@@ -12,16 +12,17 @@ import endGame from '../actions/endGame';
 import changeGameState from '../actions/changeGameState';
 import Word from '../interfaces/Word';
 import {GameStates} from './GameStates';
+import { AppAction } from '../interfaces/AppAction';
 
 interface GameplayStateProps {
 	mode: GameStates;
 }
 
 interface GameplayDispatchProps {
-	displayValues: () => null;
-	waitForUserPress: () => null;
-	handleWordPress: (result: boolean) => null;
-	endGame: () => null;
+	displayValues: () => AppAction;
+	waitForUserPress: () => AppAction;
+	handleWordPress: (result: boolean) => AppAction;
+	endGame: () => AppAction;
 }
 
 export interface GameplayOwnProps {
@@ -32,19 +33,27 @@ type GameplayProps = GameplayStateProps & GameplayDispatchProps & GameplayOwnPro
 
 export interface GameplayState {
 	roundNumber: number;
-	topValue?: Word;
-	bottomValue?: Word;
+	topValue: Word;
+	bottomValue: Word;
 };
 
 class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	wordsGenerator = wordsGenerator();
-	numberOfRounds = 5;
+	numberOfRounds = 1;
 
-	constructor(props) {
+	constructor(props: GameplayProps) {
 		super(props);
 
 		this.state = {
-			roundNumber: 0
+			roundNumber: 0,
+			topValue: {
+				value: '',
+				focusOn: false
+			},
+			bottomValue: {
+				value: '',
+				focusOn: false
+			}
 		};
 	}
 
@@ -56,7 +65,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 		this.runNextRound();
 	}
 
-	handlePress(result) {
+	handlePress(result: boolean) {
 		this.props.handleWordPress(result);
 	}
 
@@ -64,8 +73,8 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 		if (this.shouldRunNextRound()) {
 			this.runNextRound();
 		} else {
-			this.props.endGame();
 			this.props.onGameEnd();
+			this.props.endGame();
 		}
 	}
 
@@ -93,7 +102,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 		}
 	}
 
-	renderValueDisplay(word) {
+	renderValueDisplay(word: Word) {
 		const onWordFadeOut = word.focusOn ? this.props.waitForUserPress : undefined;
 		return (
 			<View style={{flex: 20}}>
@@ -130,13 +139,13 @@ const mapStateToProps = (state: AppState) => ({
 	mode: state.gameState
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch<AppAction>) => ({
 	waitForUserPress: () => dispatch(waitForUserPress()),
-	handleWordPress: isSuccess => dispatch(handleWordPress(isSuccess)),
+	handleWordPress: (isSuccess: boolean) => dispatch(handleWordPress(isSuccess)),
 	endGame: () => dispatch(endGame()),
 	displayValues: () => dispatch(changeGameState(GameStates.DISPLAY_VALUES))
 });
 
-const GameplayComponent = connect<GameplayStateProps, GameplayDispatchProps, GameplayOwnProps>(mapStateToProps, mapDispatchToProps)(Gameplay);
+const GameplayComponent = connect<GameplayStateProps, GameplayDispatchProps, GameplayOwnProps, AppState>(mapStateToProps, mapDispatchToProps)(Gameplay);
 
 export default GameplayComponent;

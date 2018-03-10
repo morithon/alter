@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Text, Button, StyleSheet, View } from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
+import AppState from '../interfaces/AppState';
 
 interface ScoreScreenProps {
 	score: number;
@@ -10,7 +11,7 @@ interface ScoreScreenProps {
 
 class ScoreScreen extends React.Component<ScoreScreenProps & NavigationScreenProps> {
 	render() {
-		const {navigate} = this.props.navigation;
+		const {popToTop} = this.props.navigation;
 		return ( 
 			<View style={styles.container}>
 				<Text>
@@ -22,7 +23,7 @@ class ScoreScreen extends React.Component<ScoreScreenProps & NavigationScreenPro
 				<Text>
 					{this.props.score}
 				</Text>
-				<Button onPress={() => navigate('Home')} title="Go back to Home Screen">
+				<Button onPress={popToTop} title="Go back to Home Screen">
 				</Button>
 			</View>
 		); 
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppState) => ({
 	score: state.scores[state.scores.length - 1]
 });
 

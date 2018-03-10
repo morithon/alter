@@ -5,9 +5,10 @@ import {NavigationScreenProps} from 'react-navigation';
 import Countdown from '../components/Countdown';
 import {GameStates} from '../components/GameStates';
 import Gameplay from '../components/Gameplay';
+import AppState from '../interfaces/AppState';
 
 interface GameScreenProps {
-	gameState: string;
+	gameState: GameStates;
 };
 
 class GameScreen extends React.Component<GameScreenProps & NavigationScreenProps, {}> {
@@ -21,13 +22,13 @@ class GameScreen extends React.Component<GameScreenProps & NavigationScreenProps
 		
 		return ( 
 			<Gameplay
-				onGameEnd={() => navigation.navigate('Score')}>
+				onGameEnd={() => navigation.replace('Score')}>
 			</Gameplay>
 		); 
 	}
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: AppState) => ({
 	gameState: state.gameState
 });
 

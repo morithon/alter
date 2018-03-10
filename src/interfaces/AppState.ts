@@ -4,5 +4,5 @@ export default interface AppState {
 	gameState: GameStates,
 	scores: number[];
 	score: number;
-	startTime?: number;
+	startTime: number | null;
 }

@@ -10,13 +10,13 @@ export interface ConfigScreenState {
 }
 
 export default class ConfigScreen extends React.Component<{}, ConfigScreenState> {
-	constructor(props) {
+	constructor(props: {}) {
 		super(props);
 
 		this.state = {...initialSettings};
 	}
 
-	updateConfigValue(value) {
+	updateConfigValue(value: boolean) {
 		this.setState({keepScore: value});
 	}
 
