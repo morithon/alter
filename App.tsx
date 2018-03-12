@@ -11,7 +11,10 @@ import ConfigScreen from './src/screens/ConfigScreen';
 
 const App = StackNavigator({
 	Home: {
-		screen: HomeScreen
+		screen: HomeScreen,
+		navigationOptions: {
+			header: null
+		}
 	},
 	Game: {
 		screen: GameScreen,
