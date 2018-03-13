@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StackNavigator, NavigationComponent} from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 

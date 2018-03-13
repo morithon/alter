@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import {StyleSheet, View } from 'react-native';
 import {NavigationScreenProp} from 'react-navigation';
 import {Icon, Text} from 'react-native-elements';
 import {blue, lightGray, lighterGray, brightBlue, darkBrightBlue, orange, coolBlue} from '../styles/colors';
