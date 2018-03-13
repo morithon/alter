@@ -2,11 +2,12 @@ import React from 'react';
 import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
 import {GameStates} from './GameStates';
 import Word from './Word';
+import { brightBlue } from '../styles/colors';
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#4fc3f7',
+		backgroundColor: brightBlue,
 	},
 	text: {
 		fontSize: 42,

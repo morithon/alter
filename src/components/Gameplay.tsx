@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect, Dispatch} from 'react-redux';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import AppState from '../interfaces/AppState';
 import ValueDisplay from './ValueDisplay';
@@ -13,6 +13,15 @@ import changeGameState from '../actions/changeGameState';
 import Word from '../interfaces/Word';
 import {GameStates} from './GameStates';
 import { AppAction } from '../interfaces/AppAction';
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'stretch',
+		justifyContent: 'center'
+	}
+});
 
 interface GameplayStateProps {
 	mode: GameStates;
@@ -119,7 +128,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 
 	render() {
 		return (
-			<View style={{flex: 1, flexDirection: 'column', alignItems: 'stretch', justifyContent: 'center'}}>
+			<View style={styles.container}>
 				{this.renderValueDisplay(this.state.topValue)}
 
 				<View style={{flex: 1}}>
