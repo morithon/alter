@@ -1,16 +1,17 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import { withFadeInAndOutAnimation, FadeInAndOutAnimationProps } from './withFadeInAndOutAnimation';
+import { green, red } from '../styles/colors';
 
 const styles = StyleSheet.create({
 	divider: {
 		flex: 1
 	},
 	success: {
-		backgroundColor: '#4caf50'
+		backgroundColor: green
 	},
 	failure: {
-		backgroundColor: '#f44336'
+		backgroundColor: red
 	}
 });
 

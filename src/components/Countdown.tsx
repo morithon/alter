@@ -1,12 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Text, View } from 'react-native';
+import {Text, View, StyleSheet } from 'react-native';
 
 import changeGameState from '../actions/changeGameState';
 import {GameStates} from './GameStates';
 import { Dispatch } from 'redux';
 import { AppAction } from '../interfaces/AppAction';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
+import { utils } from '../styles/utils';
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
+	}
+});
 
 interface CountdownProps {
 	onCountdownEnd: () => ChangeGameStateAction;
@@ -61,8 +71,8 @@ class Countdown extends React.Component<CountdownProps, CountdownState> {
 
 	render() {
 		return (
-			<View style={{flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-				<Text style={{fontSize: 16}}>
+			<View style={styles.container}>
+				<Text style={utils.bigText}>
 					{this.state.countdownToGame}
 				</Text>
 			</View>

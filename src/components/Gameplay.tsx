@@ -13,6 +13,8 @@ import changeGameState from '../actions/changeGameState';
 import Word from '../interfaces/Word';
 import {GameStates} from './GameStates';
 import { AppAction } from '../interfaces/AppAction';
+import { brightBlue } from '../styles/colors';
+import { utils } from '../styles/utils';
 
 const styles = StyleSheet.create({
 	container: {
@@ -20,6 +22,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'stretch',
 		justifyContent: 'center'
+	},
+	divider: {
+		height: 5,
+		backgroundColor: brightBlue
 	}
 });
 
@@ -48,7 +54,7 @@ export interface GameplayState {
 
 class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	wordsGenerator = wordsGenerator();
-	numberOfRounds = 1;
+	numberOfRounds = 10;
 
 	constructor(props: GameplayProps) {
 		super(props);
@@ -131,7 +137,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 			<View style={styles.container}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<View style={{flex: 1}}>
+				<View style={[styles.divider, utils.shadow]}>
 					<Divider
 						isSuccess={this.getIsSuccess()}
 						onFadeOut={this.checkForNextRound.bind(this)}

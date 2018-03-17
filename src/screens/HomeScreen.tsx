@@ -3,6 +3,7 @@ import {StyleSheet, View } from 'react-native';
 import {NavigationScreenProp} from 'react-navigation';
 import {Icon, Text} from 'react-native-elements';
 import {blue, lightGray, lighterGray, brightBlue, darkBrightBlue, orange, coolBlue} from '../styles/colors';
+import { utils } from '../styles/utils';
 
 export interface HomeScreenProps {
 	navigation: NavigationScreenProp<{}>;
@@ -12,8 +13,7 @@ export interface HomeScreenProps {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: blue,
-		alignItems: 'stretch',
+		backgroundColor: 'white',
 		justifyContent: 'center',
 	},
 	row: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	headerText: {
-		color: coolBlue,
+		color: 'white',
 		fontSize: 80,
 		fontWeight: 'bold',
 	},
@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 		const {navigate} = this.props.navigation;
 		return ( 
 			<View style={styles.container}>
-				<View style={styles.header}>
+				<View style={[styles.header, utils.shadow]}>
 					<Text style={styles.headerText}>
 						Alter
 					</Text>
@@ -72,7 +72,7 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 							raised={true}
 							onPress={() => navigate('Game')}
 						/>
-						<Text>
+						<Text style={{color: brightBlue}}>
 							Calm
 						</Text>
 					</View>
@@ -80,9 +80,9 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 						<Icon
 							name="glasses"
 							type="material-community"
-							color={lightGray}
+							color={lighterGray}
 							reverse={true}
-							reverseColor={lighterGray}
+							reverseColor={lightGray}
 							size={32}
 							raised={false}
 						/>
@@ -98,9 +98,9 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 					<View style={styles.column} >
 						<Icon
 							name="block"
-							color={lightGray}
+							color={lighterGray}
 							reverse={true}
-							reverseColor={lighterGray}
+							reverseColor={lightGray}
 							size={32}
 						/>
 						<Text style={styles.disabled}>
@@ -113,9 +113,9 @@ export default class HomeScreen extends React.Component<HomeScreenProps, {}> {
 					<View style={styles.column} >
 						<Icon
 							name="block"
-							color={lightGray}
+							color={lighterGray}
 							reverse={true}
-							reverseColor={lighterGray}
+							reverseColor={lightGray}
 							size={32}
 						/>
 						<Text style={styles.disabled}>

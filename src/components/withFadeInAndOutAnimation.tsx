@@ -4,7 +4,7 @@ import {Animated} from 'react-native';
 interface WithFadeInAndOutAnimationProps {
 	fadeToDuration?: number;
 	showForDuration?: number;
-	onFadeOut?: () => null;
+	onFadeOut?: () => void;
 };
 
 interface WithFadeInAndOutAnimationState {
@@ -22,8 +22,8 @@ export function withFadeInAndOutAnimation<T>(
 ) {
 	return class extends React.Component<FadeInAndOutAnimationProps<T>, WithFadeInAndOutAnimationState> {
 		static defaultProps = {
-			fadeToDuration: 200,
-			showForDuration: 100,
+			fadeToDuration: 150,
+			showForDuration: 250,
 			onFadeOut: () => {}
 		}
 
@@ -52,10 +52,10 @@ export function withFadeInAndOutAnimation<T>(
 		}
 
 		fadeOut() {
-			this.fadeTo(0, this.props.onFadeOut as () => null, this.props.showForDuration as number);
+			this.fadeTo(0, this.props.onFadeOut as () => void, this.props.showForDuration as number);
 		}
 
-		fadeTo(toValue: number, callback: () => null, delay: number = 0) {
+		fadeTo(toValue: number, callback: () => void, delay: number = 0) {
 			const config = {toValue, delay, duration: this.props.fadeToDuration};
 			Animated.timing(this.state.fadeAnim, config).start(callback);
 		}
