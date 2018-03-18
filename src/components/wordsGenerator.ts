@@ -1,3 +1,17 @@
+import Word from '../interfaces/Word';
+
+export type WordAffect = 'positive' | 'neutral';
+
+export interface OrderedWords {
+	topValue: Word;
+	bottomValue: Word;
+}
+
+interface FocusValues {
+	focusOnValue: string;
+	focusAwayFromValue: string;
+}
+
 const words = {
 	positive: ['happiness', 'kindness'],
 	neutral: ['real', 'table']
@@ -14,12 +28,12 @@ function* wordsGenerator() {
 
 	let reset;
 	while (true) {
-		const {focusOnValue, focusAwayFromValue} = valuesGenerator.next(reset).value;
+		const {focusOnValue, focusAwayFromValue}: FocusValues = valuesGenerator.next(reset).value;
 		reset = yield getOrderedValues(focusOnValue, focusAwayFromValue);
 	}
 }
 
-function* getValuesGenerator() {
+function* getValuesGenerator(): IterableIterator<FocusValues> {
 	let focusOnValueIterator = getRandomizedWords('positive');
 	let focusAwayFromValueIterator = getRandomizedWords('neutral');
 	let reset;
@@ -39,38 +53,31 @@ function* getValuesGenerator() {
 	}
 }
 
-const getRandomizedWords = (affect) => {
+const getRandomizedWords = (affect: WordAffect): IterableIterator<string> => {
 	return words[affect].sort(randomSort)[Symbol.iterator]();
 };
 
-const getOrderedValues = (focusOnValue, focusAwayFromValue) => {
-	const valueOrder = getValueOrderArray();
+const getOrderedValues = (focusOnValue: string, focusAwayFromValue: string) => {
+	const words = getRandomlyOrderedWords(focusOnValue, focusAwayFromValue);
 
-	const newValues = {};
-
-	newValues[valueOrder.pop()] = {
-		value: focusOnValue,
-		focusOn: true
-	};
-
-	newValues[valueOrder.pop()] = {
-		value: focusAwayFromValue,
-		focusOn: false
+	const newValues: OrderedWords = {
+		topValue: words.pop() as Word,
+		bottomValue: words.pop() as Word
 	};
 
 	return newValues;
 };
 
-const getValueOrderArray = () => {
-	const valueOrder = [];
+const getRandomlyOrderedWords = (focusOnValue: string, focusAwayFromValue: string) => {
+	const valueOrder = [{
+		value: focusOnValue,
+		focusOn: true
+	}];
 
-	if (getRandomNumber(1)) {
-		valueOrder.push('topValue');
-		valueOrder.push('bottomValue');
-	} else {
-		valueOrder.push('bottomValue');
-		valueOrder.push('topValue');
-	}
+	valueOrder.splice(getRandomNumber(1), 0, {
+		value: focusAwayFromValue,
+		focusOn: false
+	});
 
 	return valueOrder;
 };

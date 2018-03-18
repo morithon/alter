@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View } from 'react-native';
 import {NavigationScreenProp} from 'react-navigation';
 import {Icon, Text} from 'react-native-elements';
-import {blue, lightGray, lighterGray, brightBlue, darkBrightBlue, orange, coolBlue} from '../styles/colors';
+import {lightGray, lighterGray, brightBlue, darkBrightBlue, orange} from '../styles/colors';
 import { utils } from '../styles/utils';
 
 export interface HomeScreenProps {
