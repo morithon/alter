@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {StackNavigator} from 'react-navigation';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
