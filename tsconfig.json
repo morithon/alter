@@ -2,8 +2,7 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "es2015",
-    "outDir": "build/dist",
-    "sourceMap": true,
+    "noEmit": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
     "lib": ["dom", "es2015", "es2016"],
@@ -14,5 +13,9 @@
     "strict": true,
 	"noImplicitReturns": true,
 	"noUnusedLocals": true
-  }
+  },
+  "exclude": [
+	  "node_modules",
+	  "**/__tests__/"
+	]
 }
