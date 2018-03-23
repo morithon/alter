@@ -1,5 +1,5 @@
-import {HANDLE_WORD_PRESS} from './actionTypes';
 import HandleWordPressAction from '../interfaces/HandleWordPressAction';
+import {HANDLE_WORD_PRESS} from './actionTypes';
 
 export default (isSuccess: boolean): HandleWordPressAction => ({
 	type: HANDLE_WORD_PRESS,

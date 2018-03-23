@@ -4,8 +4,8 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 import rootReducer from './src/reducers/rootReducer';
-import HomeScreen from './src/screens/HomeScreen';
 import GameScreen from './src/screens/GameScreen';
+import HomeScreen from './src/screens/HomeScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
 import ConfigScreen from './src/screens/ConfigScreen';
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { Text, Button, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import {NavigationScreenProps} from 'react-navigation';
+import {connect} from 'react-redux';
+
 import AppState from '../interfaces/AppState';
 
 interface ScoreScreenProps {
@@ -32,9 +33,9 @@ class ScoreScreen extends React.Component<ScoreScreenProps & NavigationScreenPro
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		backgroundColor: '#fff',
 		alignItems: 'center',
+		backgroundColor: '#fff',
+		flex: 1,
 		justifyContent: 'center',
 	},
 });

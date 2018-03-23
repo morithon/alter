@@ -1,13 +1,13 @@
 import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {connect} from 'react-redux';
-import {Text, View, StyleSheet } from 'react-native';
+import {Dispatch} from 'redux';
 
 import changeGameState from '../actions/changeGameState';
-import {GameStates} from './GameStates';
-import { Dispatch } from 'redux';
-import { AppAction } from '../interfaces/AppAction';
+import {AppAction} from '../interfaces/AppAction';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
-import { utils } from '../styles/utils';
+import {utils} from '../styles/utils';
+import {GameStates} from './GameStates';
 
 const styles = StyleSheet.create({
 	container: {
@@ -20,16 +20,16 @@ const styles = StyleSheet.create({
 
 interface CountdownProps {
 	onCountdownEnd: () => ChangeGameStateAction;
-};
+}
 
 interface CountdownState {
 	countdownToGame: number;
 }
 
 class Countdown extends React.Component<CountdownProps, CountdownState> {
-	countdownInterval = 800;
-	countdownFrom = 3;
-	intervalId: number | null = null;
+	private countdownInterval = 800;
+	private countdownFrom = 1;
+	private intervalId: number | null = null;
 
 	constructor(props: CountdownProps) {
 		super(props);
@@ -38,38 +38,17 @@ class Countdown extends React.Component<CountdownProps, CountdownState> {
 		};
 	}
 
-	componentDidMount() {
+	public componentDidMount() {
 		this.startCountdown();
 	}
 
-	componentWillUnmount() {
+	public componentWillUnmount() {
 		if (this.intervalId) {
 			clearInterval(this.intervalId);
 		}
 	}
 
-	startCountdown() {
-		this.intervalId = setInterval(this.countdown.bind(this), this.countdownInterval);
-	}
-
-	countdown() {
-		if (this.state.countdownToGame > 1) {
-			this.setState({countdownToGame: this.state.countdownToGame - 1});
-		} else {
-			this.stopCountdown();
-		}
-	}
-
-	stopCountdown() {
-		if (this.intervalId !== null) {
-			clearInterval(this.intervalId);
-		}
-
-		this.intervalId = null;
-		this.props.onCountdownEnd();
-	}
-
-	render() {
+	public render() {
 		return (
 			<View style={styles.container}>
 				<Text style={utils.bigText}>
@@ -77,6 +56,27 @@ class Countdown extends React.Component<CountdownProps, CountdownState> {
 				</Text>
 			</View>
 		);
+	}
+
+	private startCountdown() {
+		this.intervalId = setInterval(this.countdown.bind(this), this.countdownInterval);
+	}
+
+	private countdown() {
+		if (this.state.countdownToGame > 1) {
+			this.setState({countdownToGame: this.state.countdownToGame - 1});
+		} else {
+			this.stopCountdown();
+		}
+	}
+
+	private stopCountdown() {
+		if (this.intervalId !== null) {
+			clearInterval(this.intervalId);
+		}
+
+		this.intervalId = null;
+		this.props.onCountdownEnd();
 	}
 }
 

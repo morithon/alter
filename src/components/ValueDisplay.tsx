@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableHighlight} from 'react-native';
+import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+
+import {lightGray} from '../styles/colors';
+import {utils} from '../styles/utils';
 import {GameStates} from './GameStates';
 import Word from './Word';
-import { utils } from '../styles/utils';
-import { lightGray } from '../styles/colors';
 
 const styles = StyleSheet.create({
 	container: {
@@ -21,8 +22,8 @@ export interface ValueDisplayProps {
 	value: string;
 	focusOn: boolean;
 	onPress: (focusOn: boolean) => void;
-	onWordFadeOut?: () => any;
-};
+	onWordFadeOut?: () => void;
+}
 
 const ValueDisplay = ({mode, value, focusOn, onPress, onWordFadeOut}: ValueDisplayProps) => (
 	<View style={[styles.container]}>

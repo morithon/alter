@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import { withFadeInAndOutAnimation, FadeInAndOutAnimationProps } from './withFadeInAndOutAnimation';
-import { green, red } from '../styles/colors';
+
+import {green, red} from '../styles/colors';
+import {FadeInAndOutAnimationProps, withFadeInAndOutAnimation} from './withFadeInAndOutAnimation';
 
 const styles = StyleSheet.create({
 	divider: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
 
 interface DividerProps {
 	isSuccess?: boolean;
-};
+}
 
 const getStyle = (isSuccess: boolean | undefined) => {
 	if (isSuccess === true) {

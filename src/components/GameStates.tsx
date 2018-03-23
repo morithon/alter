@@ -4,4 +4,4 @@ export enum GameStates {
 	WAIT_FOR_USER_PRESS = 'WAIT_FOR_USER_PRESS',
 	SUCCESS = 'SUCCESS',
 	FAILURE = 'FAILURE'
-};
+}

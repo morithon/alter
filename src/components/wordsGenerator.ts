@@ -12,7 +12,7 @@ interface FocusValues {
 	focusAwayFromValue: string;
 }
 
-const words = {
+const wordsLists = {
 	positive: ['happiness', 'kindness'],
 	neutral: ['real', 'table']
 };
@@ -21,7 +21,7 @@ const words = {
 const getRandomNumber = (max: number) => Math.floor(Math.random() * (max + 1));
 
 // Generates a number between -1 and 1
-const randomSort = () => getRandomNumber(2) - 1; 
+const randomSort = () => getRandomNumber(2) - 1;
 
 function* wordsGenerator() {
 	const valuesGenerator = getValuesGenerator();
@@ -54,7 +54,7 @@ function* getValuesGenerator(): IterableIterator<FocusValues> {
 }
 
 const getRandomizedWords = (affect: WordAffect): IterableIterator<string> => {
-	return words[affect].sort(randomSort)[Symbol.iterator]();
+	return wordsLists[affect].sort(randomSort)[Symbol.iterator]();
 };
 
 const getOrderedValues = (focusOnValue: string, focusAwayFromValue: string) => {

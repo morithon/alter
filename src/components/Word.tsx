@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import { withFadeInAndOutAnimation } from './withFadeInAndOutAnimation';
-import { utils } from '../styles/utils';
+import {Text, View} from 'react-native';
+
+import {utils} from '../styles/utils';
+import {withFadeInAndOutAnimation} from './withFadeInAndOutAnimation';
 
 export interface WordProps {
 	value: string;

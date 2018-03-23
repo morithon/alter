@@ -1,7 +1,7 @@
-import AppState from '../interfaces/AppState';
+import {CHANGE_GAME_STATE, END_GAME, HANDLE_WORD_PRESS, WAIT_FOR_USER_PRESS} from '../actions/actionTypes';
 import {GameStates} from '../components/GameStates';
-import { CHANGE_GAME_STATE, HANDLE_WORD_PRESS, WAIT_FOR_USER_PRESS, END_GAME} from '../actions/actionTypes';
-import { AppAction } from '../interfaces/AppAction';
+import {AppAction} from '../interfaces/AppAction';
+import AppState from '../interfaces/AppState';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
 import HandleWordPressAction from '../interfaces/HandleWordPressAction';
 import WaitForUserPressAction from '../interfaces/WaitForUserPressAction';
