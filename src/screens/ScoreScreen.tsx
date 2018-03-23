@@ -10,27 +10,6 @@ interface ScoreScreenProps {
 	scores: number[];
 }
 
-class ScoreScreen extends React.Component<ScoreScreenProps & NavigationScreenProps> {
-	render() {
-		const {popToTop} = this.props.navigation;
-		return ( 
-			<View style={styles.container}>
-				<Text>
-					Well Done!
-				</Text>
-				<Text>
-					Your score is:
-				</Text>
-				<Text>
-					{this.props.score}
-				</Text>
-				<Button onPress={popToTop} title="Go back to Home Screen">
-				</Button>
-			</View>
-		); 
-	}
-}
-
 const styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
@@ -39,6 +18,22 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
+
+const ScoreScreen = ({score, navigation: {popToTop}}: ScoreScreenProps & NavigationScreenProps) => (
+	<View style={styles.container}>
+		<Text>
+			Well Done!
+		</Text>
+		<Text>
+			Your score is:
+		</Text>
+		<Text>
+			{score}
+		</Text>
+		<Button onPress={popToTop} title="Go back to Home Screen">
+		</Button>
+	</View>
+);
 
 const mapStateToProps = (state: AppState) => ({
 	score: state.scores[state.scores.length - 1]

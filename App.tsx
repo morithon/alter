@@ -7,7 +7,6 @@ import rootReducer from './src/reducers/rootReducer';
 import GameScreen from './src/screens/GameScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
-import ConfigScreen from './src/screens/ConfigScreen';
 
 const App = StackNavigator({
 	Home: {
@@ -27,9 +26,6 @@ const App = StackNavigator({
 		navigationOptions: {
 			header: null
 		}
-	},
-	Config: {
-		screen: ConfigScreen
 	}
 });
 

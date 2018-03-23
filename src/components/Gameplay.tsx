@@ -9,7 +9,7 @@ import waitForUserPress from '../actions/waitForUserPress';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
 import Word from '../interfaces/Word';
-import {brightBlue, coolBlue} from '../styles/colors';
+import {brightBlue} from '../styles/colors';
 import {utils} from '../styles/utils';
 import Divider from './Divider';
 import {GameStates} from './GameStates';
