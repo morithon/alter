@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {lightGray} from '../styles/colors';
+import {lightGray} from '../../../styles/colors';
 
 export const disabledIconButtonStyles = StyleSheet.create({
 	text: {

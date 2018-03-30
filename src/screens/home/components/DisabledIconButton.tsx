@@ -2,11 +2,11 @@ import React from 'react';
 import {View} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 
-import {lighterGray, lightGray} from '../styles/colors';
+import {lighterGray, lightGray} from '../../../styles/colors';
 import {disabledIconButtonStyles as styles} from '../styles/disabledIconButton';
 import {homeScreenStyles} from '../styles/homeScreen';
 
-export interface DisabledIconButton {
+export interface DisabledIconButtonProps {
 	iconName?: string;
 	iconType?: string;
 	caption: string;
@@ -14,7 +14,7 @@ export interface DisabledIconButton {
 }
 
 export const DisabledIconButton =
-	({iconName = 'block', caption, releaseDateCaption = '(TBD)', iconType}: DisabledIconButton) => (
+	({iconName = 'block', caption, releaseDateCaption = '(TBD)', iconType}: DisabledIconButtonProps) => (
 		<View style={homeScreenStyles.column} >
 			<Icon
 				name={iconName}

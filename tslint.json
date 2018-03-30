@@ -9,6 +9,7 @@
 		"max-line-length": {
 			"options": [120]
 		},
+		"linebreak-style": [true, "LF"],
 		"no-any": true,
 		"quotemark": [true, "single", "jsx-double"],
 		"indent": [true, "tabs"],

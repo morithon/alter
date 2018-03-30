@@ -13,3 +13,5 @@ export const orange = '#ea7317';
 export const green = '#5bbf21';
 
 export const red = '#e5053a';
+
+export const white = '#fff';

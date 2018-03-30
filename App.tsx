@@ -4,8 +4,9 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 import rootReducer from './src/reducers/rootReducer';
+import CalmIntroScreen from './src/screens/CalmIntroScreen';
 import GameScreen from './src/screens/GameScreen';
-import HomeScreen from './src/screens/HomeScreen';
+import HomeScreen from './src/screens/home/HomeScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
 
 const App = StackNavigator({
@@ -23,6 +24,12 @@ const App = StackNavigator({
 	},
 	Score: {
 		screen: ScoreScreen,
+		navigationOptions: {
+			header: null
+		}
+	},
+	CalmIntro: {
+		screen: CalmIntroScreen,
 		navigationOptions: {
 			header: null
 		}

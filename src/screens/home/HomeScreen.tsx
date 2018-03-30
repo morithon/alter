@@ -1,12 +1,12 @@
 import React from 'react';
 import {View} from 'react-native';
-import {Icon, Text} from 'react-native-elements';
+import {Text} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 
-import {DisabledIconButton} from '../components/DisabledIconButton';
-import {brightBlue, darkBrightBlue} from '../styles/colors';
-import {homeScreenStyles as styles} from '../styles/homeScreen';
-import {utils} from '../styles/utils';
+import {utils} from '../../styles/utils';
+import {CalmIconButton} from './components/CalmIconButtons';
+import {DisabledIconButton} from './components/DisabledIconButton';
+import {homeScreenStyles as styles} from './styles/homeScreen';
 
 export default class HomeScreen extends React.Component<NavigationScreenProps, {}> {
 	public render() {
@@ -21,22 +21,9 @@ export default class HomeScreen extends React.Component<NavigationScreenProps, {
 				<View style={styles.topSpace}>
 				</View>
 				<View style={styles.row}>
-					<View style={styles.column} >
-						<Icon
-							name="sun"
-							type="feather"
-							reverse={false}
-							containerStyle={{backgroundColor: brightBlue}}
-							iconStyle={{color: '#fff'}}
-							underlayColor={darkBrightBlue}
-							size={32}
-							raised={true}
-							onPress={() => navigate('Game')}
-						/>
-						<Text style={{color: brightBlue}}>
-							Calm
-						</Text>
-					</View>
+					<CalmIconButton
+						onPress={() => navigate('CalmIntro')}
+					/>
 					<DisabledIconButton
 						iconName="glasses"
 						iconType="material-community"

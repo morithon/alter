@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {orange} from '../styles/colors';
+import {orange} from '../../../styles/colors';
 
 export const homeScreenStyles = StyleSheet.create({
 	container: {
