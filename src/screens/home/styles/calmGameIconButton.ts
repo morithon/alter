@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {brightBlue} from '../../../styles/colors';
 
-export const calmIconButtonStyles = StyleSheet.create({
+export const calmGameIconButtonStyles = StyleSheet.create({
 	text: {
 		color: brightBlue
 	},

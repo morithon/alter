@@ -5,4 +5,5 @@ export default interface AppState {
 	scores: number[];
 	score: number;
 	startTime: number | null;
+	showCalmIntro: boolean;
 }

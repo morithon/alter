@@ -23,7 +23,7 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 		return (
 			<AppIntroSlider
 			slides={slides}
-			onDone={() => navigate('Game')}
+			onDone={() => navigate('CalmGame')}
 			/>
 		);
 	}

@@ -4,7 +4,7 @@ import {Text} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 
 import {utils} from '../../styles/utils';
-import {CalmIconButton} from './components/CalmIconButtons';
+import CalmGameIconButton from './components/CalmGameIconButton';
 import {DisabledIconButton} from './components/DisabledIconButton';
 import {homeScreenStyles as styles} from './styles/homeScreen';
 
@@ -21,8 +21,8 @@ export default class HomeScreen extends React.Component<NavigationScreenProps, {
 				<View style={styles.topSpace}>
 				</View>
 				<View style={styles.row}>
-					<CalmIconButton
-						onPress={() => navigate('CalmIntro')}
+					<CalmGameIconButton
+						navigate={navigate}
 					/>
 					<DisabledIconButton
 						iconName="glasses"

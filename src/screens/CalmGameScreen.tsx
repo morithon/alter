@@ -7,11 +7,11 @@ import Gameplay from '../components/Gameplay';
 import {GameStates} from '../components/GameStates';
 import AppState from '../interfaces/AppState';
 
-interface GameScreenProps {
+interface CalmGameScreenProps {
 	gameState: GameStates;
 }
 
-const GameScreen = ({gameState, navigation}: GameScreenProps & NavigationScreenProps) => {
+const CalmGameScreen = ({gameState, navigation}: CalmGameScreenProps & NavigationScreenProps) => {
 	if (gameState === GameStates.COUNTDOWN) {
 		return (
 			<Countdown/>
@@ -29,6 +29,6 @@ const mapStateToProps = (state: AppState) => ({
 	gameState: state.gameState
 });
 
-const ConnectedGameScreen = connect(mapStateToProps)(GameScreen);
+const ConnectedCalmGameScreen = connect(mapStateToProps)(CalmGameScreen);
 
-export default ConnectedGameScreen;
+export default ConnectedCalmGameScreen;

@@ -10,7 +10,8 @@ const initialState = {
 	gameState: GameStates.COUNTDOWN,
 	scores: [],
 	score: 0,
-	startTime: null
+	startTime: null,
+	showCalmIntro: true
 };
 
 const getRoundScore = (isSuccess: boolean, startTime: number | null, userPressTime: number) => {
