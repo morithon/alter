@@ -1,8 +1,15 @@
-import {CHANGE_GAME_STATE, END_GAME, HANDLE_WORD_PRESS, WAIT_FOR_USER_PRESS} from '../actions/actionTypes';
+import {
+	CHANGE_GAME_STATE,
+	CHANGE_USER_INFO,
+	END_GAME,
+	HANDLE_WORD_PRESS,
+	WAIT_FOR_USER_PRESS
+} from '../actions/actionTypes';
 import {GameStates} from '../components/GameStates';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
+import ChangeUserInfoAction from '../interfaces/ChangeUserInfoAction';
 import HandleWordPressAction from '../interfaces/HandleWordPressAction';
 import WaitForUserPressAction from '../interfaces/WaitForUserPressAction';
 
@@ -11,7 +18,9 @@ const initialState = {
 	scores: [],
 	score: 0,
 	startTime: null,
-	showCalmIntro: true
+	userInfo: {
+		hasSeenCalmIntro: false
+	}
 };
 
 const getRoundScore = (isSuccess: boolean, startTime: number | null, userPressTime: number) => {
@@ -55,6 +64,13 @@ const rootReducer = (state: AppState = initialState, action: AppAction) => {
 			scores: [...state.scores, state.score],
 			score: 0,
 			gameState: GameStates.COUNTDOWN
+		};
+	}
+	case CHANGE_USER_INFO: {
+		const {userInfo} = action as ChangeUserInfoAction;
+		return {
+			...state,
+			userInfo
 		};
 	}
 	default:

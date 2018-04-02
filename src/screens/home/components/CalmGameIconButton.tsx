@@ -36,8 +36,8 @@ const CalmGameIconButton = ({navigate, goToIntro}: CalmGameIconButtonProps) => {
 	);
 };
 
-const mapStateToProps = (state: AppState) => ({
-	goToIntro: state.showCalmIntro
+const mapStateToProps = ({userInfo: {hasSeenCalmIntro}}: AppState) => ({
+	goToIntro: !hasSeenCalmIntro
 });
 
 const ConnectedCalmGameScreen = connect<CalmGameIconButtonStateProps, CalmGameIconButtonOwnProps, {}, AppState>
