@@ -1,24 +1,10 @@
-import Word from '../interfaces/Word';
-
-export type WordAffect = 'positive' | 'neutral';
-
-export interface OrderedWords {
-	topValue: Word;
-	bottomValue: Word;
-}
-
-interface FocusValues {
-	focusOnValue: string;
-	focusAwayFromValue: string;
-}
-
-const wordsLists = {
-	positive: ['happiness', 'kindness'],
-	neutral: ['real', 'table']
-};
-
-// Generates a number up to and including max
-const getRandomNumber = (max: number) => Math.floor(Math.random() * (max + 1));
+import Word from '../../interfaces/Word';
+import {getRandomNumber} from '../getRandomNumber';
+import FocusValues from './interfaces/FocusValues';
+import OrderedWords from './interfaces/OrderedWords';
+import WordAffect from './interfaces/WordAffect';
+import config from './wordsGeneratorConfig';
+import wordsLists from './wordsLists';
 
 // Generates a number between -1 and 1
 const randomSort = () => getRandomNumber(2) - 1;
@@ -34,8 +20,8 @@ function* wordsGenerator() {
 }
 
 function* getValuesGenerator(): IterableIterator<FocusValues> {
-	let focusOnValueIterator = getRandomizedWords('positive');
-	let focusAwayFromValueIterator = getRandomizedWords('neutral');
+	let focusOnValueIterator = getRandomizedWords(config.focusOn);
+	let focusAwayFromValueIterator = getRandomizedWords(config.focusAwayFrom);
 	let reset;
 
 	while (true) {
@@ -44,8 +30,8 @@ function* getValuesGenerator(): IterableIterator<FocusValues> {
 
 		// If reset flag is on or we ran out of words in one of the iterators, reset iterators and run the loop again
 		if (reset || nextFocusOn.done || nextFocusAwayFrom.done) {
-			focusOnValueIterator = getRandomizedWords('positive');
-			focusAwayFromValueIterator = getRandomizedWords('neutral');
+			focusOnValueIterator = getRandomizedWords(config.focusOn);
+			focusAwayFromValueIterator = getRandomizedWords(config.focusAwayFrom);
 			continue;
 		}
 
@@ -68,7 +54,7 @@ const getOrderedValues = (focusOnValue: string, focusAwayFromValue: string) => {
 	return newValues;
 };
 
-const getRandomlyOrderedWords = (focusOnValue: string, focusAwayFromValue: string) => {
+const getRandomlyOrderedWords = (focusOnValue: string, focusAwayFromValue: string): Word[] => {
 	const valueOrder = [{
 		value: focusOnValue,
 		focusOn: true

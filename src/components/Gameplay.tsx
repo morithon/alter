@@ -6,6 +6,7 @@ import changeGameState from '../actions/changeGameState';
 import endGame from '../actions/endGame';
 import handleWordPress from '../actions/handleWordPress';
 import waitForUserPress from '../actions/waitForUserPress';
+import wordsGenerator from '../helpers/wordsGenerator/wordsGenerator';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
 import Word from '../interfaces/Word';
@@ -14,7 +15,6 @@ import {utils} from '../styles/utils';
 import Divider from './Divider';
 import {GameStates} from './GameStates';
 import ValueDisplay from './ValueDisplay';
-import wordsGenerator from './wordsGenerator';
 
 const styles = StyleSheet.create({
 	container: {
@@ -54,7 +54,7 @@ export interface GameplayState {
 
 class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	private wordsGenerator = wordsGenerator();
-	private numberOfRounds = 10;
+	private numberOfRounds = 100;
 
 	constructor(props: GameplayProps) {
 		super(props);

@@ -23,7 +23,7 @@ export function withFadeInAndOutAnimation<T>(
 	return class extends React.Component<FadeInAndOutAnimationProps<T>, WithFadeInAndOutAnimationState> {
 		protected static defaultProps = {
 			fadeToDuration: 150,
-			showForDuration: 250,
+			showForDuration: 350,
 			onFadeOut: () => {}
 		};
 
