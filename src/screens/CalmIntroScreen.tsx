@@ -1,5 +1,5 @@
 import React from 'react';
-import {AsyncStorage} from 'react-native';
+import {AsyncStorage, StyleSheet} from 'react-native';
 import AppIntroSlider, {Slide} from 'react-native-app-intro-slider';
 import {NavigationScreenProps} from 'react-navigation';
 
@@ -36,11 +36,11 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 		return (
 			<AppIntroSlider
 			slides={slides}
+			showSkipButton={true}
 			onDone={() => {
 				navigate('CalmGame');
 				AsyncStorage.setItem('@ABM:hasUserSeenCalmIntro', 'true');
-			}
-			}
+			}}
 			/>
 		);
 	}
