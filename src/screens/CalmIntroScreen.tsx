@@ -1,6 +1,6 @@
 import React from 'react';
-import {AsyncStorage, StyleSheet} from 'react-native';
-import AppIntroSlider, {Slide} from 'react-native-app-intro-slider';
+import {AsyncStorage, StyleSheet, Text, View} from 'react-native';
+import AppIntroSlider, {Slide, SlideProps} from 'react-native-app-intro-slider';
 import {NavigationScreenProps} from 'react-navigation';
 
 const slides: Slide[] = [
@@ -37,6 +37,7 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 			<AppIntroSlider
 			slides={slides}
 			showSkipButton={true}
+			renderItem={this.renderItem}
 			onDone={() => {
 				navigate('CalmGame');
 				AsyncStorage.setItem('@ABM:hasUserSeenCalmIntro', 'true');
@@ -44,4 +45,42 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 			/>
 		);
 	}
+
+	private renderItem(props: SlideProps) {
+		const style = {
+			backgroundColor: props.backgroundColor,
+			paddingTop: props.topSpacer,
+			paddingBottom: props.bottomSpacer,
+			width: props.width,
+			height: props.height,
+		};
+
+		return (
+			<View style={[styles.mainContent, style]}>
+				<Text style={[styles.title, props.titleStyle]}>{props.title}</Text>
+				<Text style={[styles.text, props.textStyle]}>{props.text}</Text>
+			</View>
+		);
+	}
 }
+const styles = StyleSheet.create({
+	mainContent: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	text: {
+		color: 'rgba(255, 255, 255, .7)',
+		fontSize: 22,
+		textAlign: 'center',
+		fontWeight: '300',
+		paddingHorizontal: 16,
+		paddingVertical: 32
+	},
+	title: {
+		fontSize: 32,
+		color: 'rgba(255, 255, 255, .7)',
+		fontWeight: '300',
+		paddingHorizontal: 16,
+		paddingVertical: 32
+	}
+});

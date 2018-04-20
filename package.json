@@ -24,15 +24,16 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js"
+	"test": "node node_modules/jest/bin/jest.js",
+	"check": "tsc && tslint --p tsconfig.json"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^25.0.0",
-    "react": "16.2.0",
-    "react-native": "0.52.0",
+    "expo": "^26.0.0",
+    "react": "16.3.2",
+    "react-native": "0.54.0",
     "react-native-app-intro-slider": "^0.2.4",
     "react-native-elements": "^0.19.0",
     "react-navigation": "^1.0.0",

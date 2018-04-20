@@ -14,7 +14,7 @@ declare module 'react-native-app-intro-slider' {
 		bottomButton?: boolean;
 		dotColor?: string;
 		activeDotColor?: string;
-		renderItem?: (props: SlideProps) => Element;
+		renderItem?: (props: SlideProps) => JSX.Element;
 		slides: Slide[];
 		showSkipButton?: boolean;
 		showPrevButton?: boolean;

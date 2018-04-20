@@ -72,7 +72,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 		};
 	}
 
-	public componentWillMount() {
+	public componentDidMount() {
 		this.startGame();
 	}
 

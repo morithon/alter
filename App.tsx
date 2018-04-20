@@ -12,6 +12,7 @@ import CalmGameScreen from './src/screens/CalmGameScreen';
 import CalmIntroScreen from './src/screens/CalmIntroScreen';
 import HomeScreen from './src/screens/home/HomeScreen';
 import ScoreScreen from './src/screens/ScoreScreen';
+import { devConfig } from './src/devConfig';
 
 const AppStack = StackNavigator({
 	Home: {
@@ -47,7 +48,11 @@ interface AppProps {
 const App = ({changeUserInfo}: AppProps) => {
 	const loadUserInfo = async () => {
 		const hasUserSeenCalmIntro = await AsyncStorage.getItem('@ABM:hasUserSeenCalmIntro');
-		changeUserInfo({hasSeenCalmIntro: false}); // hasUserSeenCalmIntro === 'true'});
+		if (__DEV__ && devConfig.alwaysShowIntro) {
+			return;
+		}
+
+		changeUserInfo({hasSeenCalmIntro: hasUserSeenCalmIntro === 'true'});
 	};
 
 	loadUserInfo();

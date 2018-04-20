@@ -13,7 +13,7 @@ import {
 import {calmGameIconButtonStyles as styles} from '../styles/calmGameIconButton';
 import {homeScreenStyles} from '../styles/homeScreen';
 
-const CalmGameIconButton = ({navigate, goToIntro}: CalmGameIconButtonProps) => {
+const CalmGameIconButtonComponent = ({navigate, goToIntro}: CalmGameIconButtonProps) => {
 	const handlePress = () => goToIntro ? navigate('CalmIntro') : navigate('CalmGame');
 
 	return (
@@ -40,7 +40,7 @@ const mapStateToProps = ({userInfo: {hasSeenCalmIntro}}: AppState) => ({
 	goToIntro: !hasSeenCalmIntro
 });
 
-const ConnectedCalmGameScreen = connect<CalmGameIconButtonStateProps, CalmGameIconButtonOwnProps, {}, AppState>
-	(mapStateToProps)(CalmGameIconButton);
+const CalmGameIconButton = connect<CalmGameIconButtonStateProps, CalmGameIconButtonOwnProps, {}, AppState>
+	(mapStateToProps)(CalmGameIconButtonComponent);
 
-export default ConnectedCalmGameScreen;
+export default CalmGameIconButton;
