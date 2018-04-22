@@ -2,7 +2,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 
-import {lighterGray, lightGray} from '../../../styles/colors';
+import {lightBlue, lighterBlue} from '../../../styles/colors';
 import {disabledIconButtonStyles as styles} from '../styles/disabledIconButton';
 import {homeScreenStyles} from '../styles/homeScreen';
 
@@ -19,9 +19,9 @@ export const DisabledIconButton =
 			<Icon
 				name={iconName}
 				type={iconType}
-				color={lighterGray}
+				color={lighterBlue}
 				reverse={true}
-				reverseColor={lightGray}
+				reverseColor={lightBlue}
 				size={32}
 			/>
 			<Text style={styles.text}>

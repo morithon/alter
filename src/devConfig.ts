@@ -1,5 +1,5 @@
 const devConfig = {
-	alwaysShowIntro: true
+	alwaysShowIntro: false
 };
 
 export {devConfig};

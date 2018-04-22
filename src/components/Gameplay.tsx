@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {connect, Dispatch} from 'react-redux';
 
 import changeGameState from '../actions/changeGameState';
@@ -9,52 +9,22 @@ import waitForUserPress from '../actions/waitForUserPress';
 import wordsGenerator from '../helpers/wordsGenerator/wordsGenerator';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
+import {
+	GameplayDispatchProps,
+	GameplayOwnProps,
+	GameplayProps,
+	GameplayState,
+	GameplayStateProps
+} from '../interfaces/Gameplay';
 import Word from '../interfaces/Word';
-import {brightBlue} from '../styles/colors';
-import {utils} from '../styles/utils';
+import {gameplay as styles} from '../styles/gameplay';
 import Divider from './Divider';
 import {GameStates} from './GameStates';
 import ValueDisplay from './ValueDisplay';
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'stretch',
-		justifyContent: 'center'
-	},
-	divider: {
-		height: 5,
-		backgroundColor: brightBlue
-	}
-});
-
-interface GameplayStateProps {
-	mode: GameStates;
-}
-
-interface GameplayDispatchProps {
-	displayValues: () => AppAction;
-	waitForUserPress: () => AppAction;
-	handleWordPress: (result: boolean) => AppAction;
-	endGame: () => AppAction;
-}
-
-export interface GameplayOwnProps {
-	onGameEnd: () => boolean;
-}
-
-type GameplayProps = GameplayStateProps & GameplayDispatchProps & GameplayOwnProps;
-
-export interface GameplayState {
-	roundNumber: number;
-	topValue: Word;
-	bottomValue: Word;
-}
-
-class Gameplay extends React.Component<GameplayProps, GameplayState> {
+class GameplayComponent extends React.Component<GameplayProps, GameplayState> {
 	private wordsGenerator = wordsGenerator();
-	private numberOfRounds = 100;
+	private numberOfRounds = 25;
 
 	constructor(props: GameplayProps) {
 		super(props);
@@ -81,7 +51,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 			<View style={styles.container}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<View style={[styles.divider, utils.shadow]}>
+				<View style={[styles.divider]}>
 					<Divider
 						isSuccess={this.getIsSuccess()}
 						onFadeOut={this.checkForNextRound.bind(this)}
@@ -137,7 +107,7 @@ class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	private renderValueDisplay(word: Word) {
 		const onWordFadeOut = word.focusOn ? this.props.waitForUserPress : undefined;
 		return (
-			<View style={{flex: 20}}>
+			<View style={[styles.valueDisplay]}>
 				<ValueDisplay
 					mode={this.props.mode}
 					value={word.value}
@@ -161,7 +131,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AppAction>) => ({
 	displayValues: () => dispatch(changeGameState(GameStates.DISPLAY_VALUES))
 });
 
-const GameplayComponent = connect<GameplayStateProps, GameplayDispatchProps, GameplayOwnProps, AppState>
-	(mapStateToProps, mapDispatchToProps)(Gameplay);
+const Gameplay = connect<GameplayStateProps, GameplayDispatchProps, GameplayOwnProps, AppState>
+	(mapStateToProps, mapDispatchToProps)(GameplayComponent);
 
-export default GameplayComponent;
+export default Gameplay;

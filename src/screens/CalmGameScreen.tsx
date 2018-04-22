@@ -11,7 +11,7 @@ interface CalmGameScreenProps {
 	gameState: GameStates;
 }
 
-const CalmGameScreen = ({gameState, navigation}: CalmGameScreenProps & NavigationScreenProps) => {
+const CalmGameScreenComponent = ({gameState, navigation}: CalmGameScreenProps & NavigationScreenProps) => {
 	if (gameState === GameStates.COUNTDOWN) {
 		return (
 			<Countdown/>
@@ -29,6 +29,6 @@ const mapStateToProps = (state: AppState) => ({
 	gameState: state.gameState
 });
 
-const ConnectedCalmGameScreen = connect(mapStateToProps)(CalmGameScreen);
+const CalmGameScreen = connect(mapStateToProps)(CalmGameScreenComponent);
 
-export default ConnectedCalmGameScreen;
+export default CalmGameScreen;

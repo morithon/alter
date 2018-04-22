@@ -32,8 +32,10 @@ const getStyle = (isSuccess: boolean | undefined) => {
 
 const Divider = ({isSuccess}: DividerProps) => <View style={[styles.divider, getStyle(isSuccess)]}/>;
 
+type Props = FadeInAndOutAnimationProps<DividerProps>;
+
 const shouldStartAnimation =
-	(prevProps: FadeInAndOutAnimationProps<DividerProps>, props: FadeInAndOutAnimationProps<DividerProps>) =>
+	(prevProps: Props, props: Props) =>
 		typeof props.isSuccess === 'boolean' && prevProps.isSuccess !== props.isSuccess;
 
 export default withFadeInAndOutAnimation<DividerProps>(Divider, shouldStartAnimation);

@@ -1,0 +1,18 @@
+import {StyleSheet} from 'react-native';
+import { brightBlue } from './colors';
+
+export const gameplay = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'stretch',
+		justifyContent: 'center'
+	},
+	valueDisplay: {
+		flex: 20
+	},
+	divider: {
+		height: 8,
+		backgroundColor: brightBlue
+	}
+});

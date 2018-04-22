@@ -19,7 +19,8 @@
 		"interface-name": false,
 		"member-ordering": [true, {"order": "statics-first"}],
 		"no-empty": [false],
-		"arrow-parens": false
+		"arrow-parens": false,
+		"named-imports-order": "any"
 	},
     "rulesDirectory": []
 }
