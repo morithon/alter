@@ -4,6 +4,7 @@ import Word from './Word';
 
 export interface GameplayStateProps {
 	mode: GameStates;
+	roundScore: number;
 }
 
 export interface GameplayDispatchProps {

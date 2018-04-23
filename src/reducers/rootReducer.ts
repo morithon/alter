@@ -17,6 +17,7 @@ const initialState = {
 	gameState: GameStates.COUNTDOWN,
 	scores: [],
 	score: 0,
+	roundScore: 0,
 	startTime: null,
 	userInfo: {
 		hasSeenCalmIntro: false
@@ -51,9 +52,11 @@ const rootReducer = (state: AppState = initialState, action: AppAction) => {
 	}
 	case HANDLE_WORD_PRESS: {
 		const {userPressTime, startTime, isSuccess} = action as HandleWordPressAction;
+		const roundScore = getRoundScore(isSuccess, state.startTime, userPressTime);
 		return {
 			...state,
-			score: state.score + getRoundScore(isSuccess, state.startTime, userPressTime),
+			score: state.score + roundScore,
+			roundScore,
 			startTime,
 			gameState: isSuccess ? GameStates.SUCCESS : GameStates.FAILURE
 		};

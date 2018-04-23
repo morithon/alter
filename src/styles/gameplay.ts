@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { brightBlue } from './colors';
+import {brightBlue} from './colors';
 
 export const gameplay = StyleSheet.create({
 	container: {
@@ -12,7 +12,10 @@ export const gameplay = StyleSheet.create({
 		flex: 20
 	},
 	divider: {
-		height: 8,
+		height: 16,
 		backgroundColor: brightBlue
+	},
+	scoreContainer: {
+		alignItems: 'center'
 	}
 });

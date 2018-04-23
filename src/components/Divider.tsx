@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {green, red} from '../styles/colors';
+import {RoundScore} from './RoundScore';
 import {FadeInAndOutAnimationProps, withFadeInAndOutAnimation} from './withFadeInAndOutAnimation';
 
 const styles = StyleSheet.create({
@@ -30,7 +31,11 @@ const getStyle = (isSuccess: boolean | undefined) => {
 	return;
 };
 
-const Divider = ({isSuccess}: DividerProps) => <View style={[styles.divider, getStyle(isSuccess)]}/>;
+const Divider = ({isSuccess}: DividerProps) => (
+	<View style={[styles.divider, getStyle(isSuccess)]}>
+		{isSuccess && (<RoundScore/>)}
+	</View>
+);
 
 type Props = FadeInAndOutAnimationProps<DividerProps>;
 

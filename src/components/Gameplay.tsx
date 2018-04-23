@@ -51,11 +51,13 @@ class GameplayComponent extends React.Component<GameplayProps, GameplayState> {
 			<View style={styles.container}>
 				{this.renderValueDisplay(this.state.topValue)}
 
-				<View style={[styles.divider]}>
-					<Divider
-						isSuccess={this.getIsSuccess()}
-						onFadeOut={this.checkForNextRound.bind(this)}
-					/>
+				<View>
+					<View style={[styles.divider]}>
+						<Divider
+							isSuccess={this.getIsSuccess()}
+							onFadeOut={this.checkForNextRound.bind(this)}
+						/>
+					</View>
 				</View>
 
 				{this.renderValueDisplay(this.state.bottomValue)}
@@ -120,8 +122,9 @@ class GameplayComponent extends React.Component<GameplayProps, GameplayState> {
 	}
 }
 
-const mapStateToProps = (state: AppState) => ({
-	mode: state.gameState
+const mapStateToProps = ({gameState, roundScore}: AppState): GameplayStateProps => ({
+	mode: gameState,
+	roundScore
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<AppAction>) => ({

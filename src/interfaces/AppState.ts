@@ -5,6 +5,7 @@ export default interface AppState {
 	gameState: GameStates,
 	scores: number[];
 	score: number;
+	roundScore: number;
 	startTime: number | null;
 	userInfo: UserInfo;
 }
