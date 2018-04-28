@@ -22,7 +22,7 @@ interface RoundScoreStateProps {
 
 type RoundScoreProps = RoundScoreStateProps;
 
-const RoundScoreComponent = ({score}: RoundScoreProps) => (<Text style={[styles.score]}>{score}</Text>);
+const RoundScoreComponent = ({score}: RoundScoreProps) => (<Text style={[styles.score]}>{`+${score} pts.`}</Text>);
 
 const mapStateToProps = ({roundScore: score}: AppState): RoundScoreStateProps => ({score});
 

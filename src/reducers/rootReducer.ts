@@ -6,6 +6,7 @@ import {
 	WAIT_FOR_USER_PRESS
 } from '../actions/actionTypes';
 import {GameStates} from '../components/GameStates';
+import calculateRoundScore from '../helpers/calculateRoundScore';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
@@ -22,15 +23,6 @@ const initialState = {
 	userInfo: {
 		hasSeenCalmIntro: false
 	}
-};
-
-const getRoundScore = (isSuccess: boolean, startTime: number | null, userPressTime: number) => {
-	if (!isSuccess || !startTime) { // Sanity check, start time should always be defined at this stage
-		return 0;
-	}
-
-	const timeElapsed = userPressTime - startTime;
-	return Math.max(-1 * timeElapsed + 2000, 0);
 };
 
 const rootReducer = (state: AppState = initialState, action: AppAction) => {
@@ -52,7 +44,7 @@ const rootReducer = (state: AppState = initialState, action: AppAction) => {
 	}
 	case HANDLE_WORD_PRESS: {
 		const {userPressTime, startTime, isSuccess} = action as HandleWordPressAction;
-		const roundScore = getRoundScore(isSuccess, state.startTime, userPressTime);
+		const roundScore = calculateRoundScore(isSuccess, state.startTime, userPressTime);
 		return {
 			...state,
 			score: state.score + roundScore,
