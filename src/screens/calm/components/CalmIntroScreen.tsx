@@ -1,7 +1,9 @@
 import React from 'react';
-import {AsyncStorage, StyleSheet, Text, View} from 'react-native';
+import {AsyncStorage, Text, View} from 'react-native';
 import AppIntroSlider, {Slide, SlideProps} from 'react-native-app-intro-slider';
 import {NavigationScreenProps} from 'react-navigation';
+import {utils} from '../../../styles/utils';
+import {calmIntroScreen as styles} from '../styles/calmIntroScreen';
 
 const slides: Slide[] = [
 	{
@@ -56,31 +58,10 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 		};
 
 		return (
-			<View style={[styles.mainContent, style]}>
+			<View style={[utils.centered, style]}>
 				<Text style={[styles.title, props.titleStyle]}>{props.title}</Text>
 				<Text style={[styles.text, props.textStyle]}>{props.text}</Text>
 			</View>
 		);
 	}
 }
-const styles = StyleSheet.create({
-	mainContent: {
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	text: {
-		color: 'rgba(255, 255, 255, .7)',
-		fontSize: 22,
-		textAlign: 'center',
-		fontWeight: '300',
-		paddingHorizontal: 16,
-		paddingVertical: 32
-	},
-	title: {
-		fontSize: 32,
-		color: 'rgba(255, 255, 255, .7)',
-		fontWeight: '300',
-		paddingHorizontal: 16,
-		paddingVertical: 32
-	}
-});

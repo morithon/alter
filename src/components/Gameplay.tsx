@@ -6,6 +6,7 @@ import changeGameState from '../actions/changeGameState';
 import endGame from '../actions/endGame';
 import handleWordPress from '../actions/handleWordPress';
 import waitForUserPress from '../actions/waitForUserPress';
+import {config} from '../configs/config';
 import wordsGenerator from '../helpers/wordsGenerator/wordsGenerator';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
@@ -24,7 +25,7 @@ import ValueDisplay from './ValueDisplay';
 
 class GameplayComponent extends React.Component<GameplayProps, GameplayState> {
 	private wordsGenerator = wordsGenerator();
-	private numberOfRounds = 25;
+	private numberOfRounds = config.calmGameNumberOfRounds;
 
 	constructor(props: GameplayProps) {
 		super(props);

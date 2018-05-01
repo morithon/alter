@@ -2,10 +2,10 @@ import React from 'react';
 import {NavigationScreenProps} from 'react-navigation';
 import {connect} from 'react-redux';
 
-import Countdown from '../components/Countdown';
-import Gameplay from '../components/Gameplay';
-import {GameStates} from '../components/GameStates';
-import AppState from '../interfaces/AppState';
+import Countdown from '../../../components/Countdown';
+import Gameplay from '../../../components/Gameplay';
+import {GameStates} from '../../../components/GameStates';
+import AppState from '../../../interfaces/AppState';
 
 interface CalmGameScreenProps {
 	gameState: GameStates;

@@ -5,14 +5,14 @@ import {connect, Dispatch, Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 import changeUserInfoActionCreator from './src/actions/changeUserInfo';
-import {devConfig} from './src/devConfig';
+import {devConfig} from './src/configs/devConfig';
 import {AppAction} from './src/interfaces/AppAction';
 import UserInfo from './src/interfaces/UserInfo';
 import rootReducer from './src/reducers/rootReducer';
-import CalmGameScreen from './src/screens/CalmGameScreen';
-import CalmIntroScreen from './src/screens/CalmIntroScreen';
+import CalmGameScreen from './src/screens/calm/components/CalmGameScreen';
+import CalmIntroScreen from './src/screens/calm/components/CalmIntroScreen';
 import HomeScreen from './src/screens/home/HomeScreen';
-import ScoreScreen from './src/screens/ScoreScreen';
+import ScoreScreen from './src/screens/score/components/ScoreScreen';
 
 const AppStack = StackNavigator({
 	Home: {
@@ -44,6 +44,8 @@ const AppStack = StackNavigator({
 interface AppProps {
 	changeUserInfo: (userInfo: UserInfo) => void;
 }
+
+console.disableYellowBox = true;
 
 const App = ({changeUserInfo}: AppProps) => {
 	const loadUserInfo = async () => {
