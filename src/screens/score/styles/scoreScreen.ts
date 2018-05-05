@@ -22,6 +22,10 @@ export const scoreScreenStyles = StyleSheet.create({
 	scoreText: {
 		color: white
 	},
+	highScoreText: {
+		fontSize: 24,
+		color: white
+	},
 	element: {
 		flex: 4
 	},

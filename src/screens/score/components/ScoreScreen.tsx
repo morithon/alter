@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import AppState from '../../../interfaces/AppState';
 import {utils} from '../../../styles/utils';
-import {ScoreScreenProps} from '../interfaces/ScoreScreen';
+import {ScoreScreenProps, ScoreScreenStateProps} from '../interfaces/ScoreScreen';
 import {scoreScreenStyles as styles} from '../styles/scoreScreen';
 
 const getScoreMessage = (score: number) => {
@@ -27,10 +27,15 @@ const getScoreMessage = (score: number) => {
 	}
 };
 
-const ScoreScreen = ({score, navigation: {popToTop}}: ScoreScreenProps & NavigationScreenProps) => (
+const ScoreScreen = ({score, isHighScore, navigation: {popToTop}}: ScoreScreenProps & NavigationScreenProps) => (
 	<View style={styles.container}>
 		<View style={styles.element}/>
 		<View style={[styles.element, utils.centered]}>
+			{isHighScore && (
+				<Text style={styles.highScoreText}>
+					NEW HIGH SCORE!
+				</Text>
+			)}
 			<View style={styles.scoreLine}>
 				<Text style={styles.text}>
 					You got
@@ -53,9 +58,15 @@ const ScoreScreen = ({score, navigation: {popToTop}}: ScoreScreenProps & Navigat
 	</View>
 );
 
-const mapStateToProps = (state: AppState) => ({
-	score: state.scores[state.scores.length - 1]
-});
+const mapStateToProps = ({scores}: AppState): ScoreScreenStateProps => {
+	const score = scores[scores.length - 1];
+	const secondHighestScore = scores.sort((a: number, b: number) => b - a)[1] || 0;
+
+	return {
+		isHighScore: score > secondHighestScore,
+		score
+	};
+};
 
 const ConnectedScoreScreen = connect(mapStateToProps)(ScoreScreen);
 

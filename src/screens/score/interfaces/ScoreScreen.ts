@@ -1,4 +1,6 @@
-export interface ScoreScreenProps {
+export interface ScoreScreenStateProps {
 	score: number;
-	scores: number[];
+	isHighScore: boolean;
 }
+
+export type ScoreScreenProps = ScoreScreenStateProps;

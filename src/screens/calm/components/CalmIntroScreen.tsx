@@ -33,17 +33,20 @@ const slides: Slide[] = [
 ];
 
 export default class CalmIntroScreen extends React.Component<NavigationScreenProps, {}> {
+	constructor(props: NavigationScreenProps) {
+		super(props);
+
+		this.close = this.close.bind(this);
+	}
+
 	public render() {
-		const {navigate} = this.props.navigation;
 		return (
 			<AppIntroSlider
-			slides={slides}
-			showSkipButton={true}
-			renderItem={this.renderItem}
-			onDone={() => {
-				navigate('CalmGame');
-				AsyncStorage.setItem('@ABM:hasUserSeenCalmIntro', 'true');
-			}}
+				slides={slides}
+				showSkipButton={true}
+				renderItem={this.renderItem}
+				onDone={this.close}
+				onSkip={this.close}
 			/>
 		);
 	}
@@ -63,5 +66,12 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 				<Text style={[styles.text, props.textStyle]}>{props.text}</Text>
 			</View>
 		);
+	}
+
+	private close() {
+		const {navigate} = this.props.navigation;
+
+		navigate('CalmGame');
+		AsyncStorage.setItem('@ABM:hasUserSeenCalmIntro', 'true');
 	}
 }

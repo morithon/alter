@@ -45,7 +45,9 @@ interface AppProps {
 	changeUserInfo: (userInfo: UserInfo) => void;
 }
 
-console.disableYellowBox = true;
+if (__DEV__) {
+	console.disableYellowBox = devConfig.disableYellowBox;
+}
 
 const App = ({changeUserInfo}: AppProps) => {
 	const loadUserInfo = async () => {

@@ -1,5 +1,6 @@
 const devConfig = {
-	alwaysShowIntro: false
+	alwaysShowIntro: true,
+	disableYellowBox: true
 };
 
 export {devConfig};
