@@ -30,16 +30,15 @@ class GameplayComponent extends React.Component<GameplayProps, GameplayState> {
 	constructor(props: GameplayProps) {
 		super(props);
 
+		const placeholderValue = {
+			value: '',
+			focusOn: false
+		};
+
 		this.state = {
 			roundNumber: 0,
-			topValue: {
-				value: '',
-				focusOn: false
-			},
-			bottomValue: {
-				value: '',
-				focusOn: false
-			}
+			topValue: placeholderValue,
+			bottomValue: placeholderValue
 		};
 	}
 

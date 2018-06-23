@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Text} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 
+import I18n from '../../i18n/i18n';
 import {utils} from '../../styles/utils';
 import CalmGameIconButton from './components/CalmGameIconButton';
 import {DisabledIconButton} from './components/DisabledIconButton';
@@ -25,18 +26,12 @@ export default class HomeScreen extends React.Component<NavigationScreenProps, {
 						navigate={navigate}
 					/>
 					<DisabledIconButton
-						iconName="glasses"
-						iconType="material-community"
-						caption="Sharp"
-						releaseDateCaption="(Coming Fall 2018)"
+						caption={I18n.t('soberGameName')}
 					/>
 				</View>
 				<View style={styles.row}>
 					<DisabledIconButton
-						caption="Sober"
-					/>
-					<DisabledIconButton
-						caption="Non-smoking"
+						caption={I18n.t('nonSmokingGameName')}
 					/>
 				</View>
 				<View style={styles.bottomSpace}>

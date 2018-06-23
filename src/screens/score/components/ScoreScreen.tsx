@@ -4,6 +4,7 @@ import {Button} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 import {connect} from 'react-redux';
 
+import I18n from '../../../i18n/i18n';
 import AppState from '../../../interfaces/AppState';
 import {utils} from '../../../styles/utils';
 import {ScoreScreenProps, ScoreScreenStateProps} from '../interfaces/ScoreScreen';
@@ -11,19 +12,19 @@ import {scoreScreenStyles as styles} from '../styles/scoreScreen';
 
 const getScoreMessage = (score: number) => {
 	if (score === 0) {
-		return 'Seriously?';
+		return I18n.t('zeroScoreMessage');
 	} else if (score < 1200) {
-		return 'You can do better!';
+		return I18n.t('veryLowScoreMessage');
 	} else if (score < 1500) {
-		return 'That\'s ok!';
+		return I18n.t('lowScoreMessage');
 	} else if (score < 1800) {
-		return 'Well done!';
+		return I18n.t('mediumScoreMessage');
 	} else if (score < 1950) {
-		return 'Very good!';
+		return I18n.t('highScoreMessage');
 	} else if (score < 2050) {
-		return 'That \'s great!';
+		return I18n.t('veryHighScoreMessage');
 	} else {
-		return 'Amazing!';
+		return I18n.t('extremelyHighScoreMessage');
 	}
 };
 
@@ -33,15 +34,15 @@ const ScoreScreen = ({score, isHighScore, navigation: {popToTop}}: ScoreScreenPr
 		<View style={[styles.element, utils.centered]}>
 			{isHighScore && (
 				<Text style={styles.highScoreText}>
-					NEW HIGH SCORE!
+					{I18n.t('newHighScoreMessage')}
 				</Text>
 			)}
 			<View style={styles.scoreLine}>
 				<Text style={styles.text}>
-					You got
+					{I18n.t('pointGettingMessage')}
 				</Text>
 				<Text style={[styles.text, styles.scoreText]}>
-					{` ${score} `}{score !== 1 ? 'pts.' : 'pt.'}
+					{` ${score} `}{score !== 1 ? I18n.t('pointAbbreviationPlural') : I18n.t('pointAbbreviationSingular')}
 				</Text>
 			</View>
 			<Text style={styles.text}>
@@ -51,7 +52,7 @@ const ScoreScreen = ({score, isHighScore, navigation: {popToTop}}: ScoreScreenPr
 		<View style={styles.returnButtonContainer}>
 			<Button
 				onPress={popToTop}
-				title="Go back to Home Screen"
+				title={I18n.t('returnToHomeScreen')}
 				buttonStyle={styles.returnButton}>
 			</Button>
 		</View>

@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import {connect} from 'react-redux';
 
+import I18n from '../../../i18n/i18n';
 import AppState from '../../../interfaces/AppState';
 import {darkBrightBlue} from '../../../styles/colors';
 import {
@@ -30,7 +31,7 @@ const CalmGameIconButtonComponent = ({navigate, goToIntro}: CalmGameIconButtonPr
 				onPress={handlePress}
 			/>
 			<Text style={styles.text}>
-				Calm
+				{I18n.t('calmGameName')}
 			</Text>
 		</View>
 	);
