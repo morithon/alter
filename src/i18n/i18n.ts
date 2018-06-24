@@ -1,9 +1,12 @@
 import I18n from 'react-native-i18n';
+import {devConfig} from '../configs/devConfig';
 import en from './en/en';
 import pl from './pl/pl';
 
-I18n.defaultLocale = 'pl-PL';
-I18n.locale = 'pl-PL';
+if (__DEV__ && devConfig.locale) {
+	I18n.defaultLocale = devConfig.locale;
+	I18n.locale = devConfig.locale;
+}
 
 I18n.fallbacks = true;
 

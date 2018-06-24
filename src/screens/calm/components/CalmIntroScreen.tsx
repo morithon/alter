@@ -71,6 +71,8 @@ export default class CalmIntroScreen extends React.Component<NavigationScreenPro
 		const {navigate} = this.props.navigation;
 
 		navigate('CalmGame');
+
+		// TODO should be a saga
 		AsyncStorage.setItem('@ABM:hasUserSeenCalmIntro', 'true');
 	}
 }

@@ -1,6 +1,7 @@
 const devConfig = {
 	alwaysShowIntro: true,
-	disableYellowBox: true
+	disableYellowBox: true,
+	locale: 'en-US'
 };
 
 export {devConfig};

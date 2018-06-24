@@ -52,6 +52,7 @@ if (__DEV__) {
 const App = ({changeUserInfo}: AppProps) => {
 	const loadUserInfo = async () => {
 		const hasUserSeenCalmIntro = await AsyncStorage.getItem('@ABM:hasUserSeenCalmIntro');
+
 		if (__DEV__ && devConfig.alwaysShowIntro) {
 			return;
 		}
