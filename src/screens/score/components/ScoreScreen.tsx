@@ -1,32 +1,15 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {Button} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 import {connect} from 'react-redux';
 
+import ReturnHomeButton from '../../../components/ReturnHomeButton';
 import I18n from '../../../i18n/i18n';
 import AppState from '../../../interfaces/AppState';
 import {utils} from '../../../styles/utils';
+import {getScoreMessage} from '../helpers/getScoreMessage';
 import {ScoreScreenProps, ScoreScreenStateProps} from '../interfaces/ScoreScreen';
 import {scoreScreenStyles as styles} from '../styles/scoreScreen';
-
-const getScoreMessage = (score: number) => {
-	if (score === 0) {
-		return I18n.t('zeroScoreMessage');
-	} else if (score < 1200) {
-		return I18n.t('veryLowScoreMessage');
-	} else if (score < 1500) {
-		return I18n.t('lowScoreMessage');
-	} else if (score < 1800) {
-		return I18n.t('mediumScoreMessage');
-	} else if (score < 1950) {
-		return I18n.t('highScoreMessage');
-	} else if (score < 2050) {
-		return I18n.t('veryHighScoreMessage');
-	} else {
-		return I18n.t('extremelyHighScoreMessage');
-	}
-};
 
 const ScoreScreen = ({score, isHighScore, navigation: {popToTop}}: ScoreScreenProps & NavigationScreenProps) => (
 	<View style={styles.container}>
@@ -50,11 +33,9 @@ const ScoreScreen = ({score, isHighScore, navigation: {popToTop}}: ScoreScreenPr
 			</Text>
 		</View>
 		<View style={styles.returnButtonContainer}>
-			<Button
-				onPress={popToTop}
-				title={I18n.t('returnToHomeScreen')}
-				buttonStyle={styles.returnButton}>
-			</Button>
+			<ReturnHomeButton
+				popToTop={popToTop}
+			/>
 		</View>
 	</View>
 );

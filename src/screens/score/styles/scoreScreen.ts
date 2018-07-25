@@ -32,8 +32,5 @@ export const scoreScreenStyles = StyleSheet.create({
 	returnButtonContainer: {
 		flex: 5,
 		justifyContent: 'flex-start'
-	},
-	returnButton: {
-		backgroundColor: orange
 	}
 });

@@ -17,7 +17,7 @@
 		"trailing-comma": [true, {"singleline": "never"}],
 		"object-literal-sort-keys": false,
 		"interface-name": false,
-		"member-ordering": [true, {"order": "statics-first"}],
+		"member-ordering": false,
 		"no-empty": [false],
 		"arrow-parens": false,
 		"named-imports-order": "any"
