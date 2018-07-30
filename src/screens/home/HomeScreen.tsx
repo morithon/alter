@@ -2,22 +2,15 @@ import React from 'react';
 import {View} from 'react-native';
 import {Text} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
-import {connect} from 'react-redux';
 
 import I18n from '../../i18n/i18n';
-import AppState from '../../interfaces/AppState';
 import {utils} from '../../styles/utils';
 import CalmGameIconButton from './components/CalmGameIconButton';
 import {DisabledIconButton} from './components/DisabledIconButton';
+import GamePointsCounter from './components/GamePointsCounter';
 import {homeScreenStyles as styles} from './styles/homeScreen';
 
-export interface HomeScreenStateProps {
-	gamePoints: number;
-}
-
-type HomeScreenProps = HomeScreenStateProps & NavigationScreenProps;
-
-const HomeScreen = ({navigation: {navigate}, gamePoints}: HomeScreenProps) => (
+const HomeScreen = ({navigation: {navigate}}: NavigationScreenProps) => (
 	<View style={styles.container}>
 		<View style={[styles.header, utils.shadow]}>
 			<Text style={styles.headerText}>
@@ -40,15 +33,9 @@ const HomeScreen = ({navigation: {navigate}, gamePoints}: HomeScreenProps) => (
 			/>
 		</View>
 		<View style={styles.bottomSpace}>
-			<Text>
-				{gamePoints}
-			</Text>
+			<GamePointsCounter/>
 		</View>
 	</View>
 );
 
-const mapStateToProps = ({cachedGamePoints}: AppState) => ({
-	gamePoints: cachedGamePoints
-});
-
-export default connect<HomeScreenStateProps, {}, {}, AppState>(mapStateToProps)(HomeScreen);
+export default HomeScreen;

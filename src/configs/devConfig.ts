@@ -1,5 +1,5 @@
 const devConfig = {
-	alwaysShowIntro: true,
+	alwaysShowIntro: false,
 	disableYellowBox: true,
 	locale: 'en-US'
 };

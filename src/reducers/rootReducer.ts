@@ -5,7 +5,7 @@ import {
 	END_GAME,
 	HANDLE_WORD_PRESS,
 	REMOVE_CACHED_GAME_POINT,
-	SET_CACHED_GAME_POINTS,
+	SET_CACHED_GAME_POINTS_DATA,
 	WAIT_FOR_USER_PRESS
 } from '../actions/actionTypes';
 import {GameStates} from '../components/GameStates';
@@ -16,7 +16,7 @@ import AppState from '../interfaces/AppState';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
 import ChangeUserInfoAction from '../interfaces/ChangeUserInfoAction';
 import HandleWordPressAction from '../interfaces/HandleWordPressAction';
-import SetCachedGamePointAction from '../interfaces/SetCachedGamePointsAction';
+import SetCachedGamePointAction from '../interfaces/SetCachedGamePointsDataAction';
 import WaitForUserPressAction from '../interfaces/WaitForUserPressAction';
 
 const initialState = {
@@ -75,13 +75,16 @@ const rootReducer = (state: AppState = initialState, action: AppAction): AppStat
 			userInfo
 		};
 	}
-	case SET_CACHED_GAME_POINTS: {
+	case SET_CACHED_GAME_POINTS_DATA: {
 		let {cachedGamePoints} = action as SetCachedGamePointAction;
-		cachedGamePoints = Math.max(cachedGamePoints, config.maxGamePoints);
+		const {cachedReloadingStartTime} = action as SetCachedGamePointAction;
+
+		cachedGamePoints = Math.min(cachedGamePoints, config.maxGamePoints);
 
 		return {
 			...state,
-			cachedGamePoints
+			cachedGamePoints,
+			cachedReloadingStartTime
 		};
 	}
 	case ADD_CACHED_GAME_POINT: {
