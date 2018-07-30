@@ -26,6 +26,8 @@ export type GamePointsWrapperProps =
 export default function withGamePoints
 	<T extends GamePointsProps = GamePointsProps>(WrappedComponent: ComponentType<T>) {
 	class GamePointsWrapper extends Component<GamePointsWrapperProps, {secondsToPoint: number | null}> {
+		private timeout?: number;
+
 		constructor(props: GamePointsWrapperProps) {
 			super(props);
 
@@ -36,13 +38,26 @@ export default function withGamePoints
 
 		public componentDidMount() {
 			if (this.props.reloadingStartTime) {
+				console.log('did mount');
 				this.checkIfShouldAddPoint();
 			}
 		}
 
 		public componentDidUpdate(prevProps: GamePointsWrapperProps) {
 			if (this.props.reloadingStartTime && prevProps.reloadingStartTime !== this.props.reloadingStartTime) {
+				console.log('did update');
 				this.checkIfShouldAddPoint();
+			}
+		}
+
+		public componentWillUnmount() {
+			this.clearTimeout();
+		}
+
+		private clearTimeout() {
+			if (this.timeout) {
+				clearInterval(this.timeout);
+				this.timeout = undefined;
 			}
 		}
 
@@ -56,25 +71,28 @@ export default function withGamePoints
 			return config.secondsToNewPoint - secondsPassed;
 		}
 
-		private checkSecondsToPoint(): void {
+		private checkSecondsToPoint(): number | null {
 			const secondsToPoint = this.getSecondsToPoint();
 
 			if (this.state.secondsToPoint !== secondsToPoint) {
-				this.setState({
-					secondsToPoint
-				});
+				this.setState({secondsToPoint});
 			}
+
+			return secondsToPoint;
 		}
 
 		private checkIfShouldAddPoint() {
-			this.checkSecondsToPoint();
+			// Clear previous timeout
+			this.clearTimeout();
 
-			if (this.state.secondsToPoint === null) {
+			const secondsToPoint = this.checkSecondsToPoint();
+
+			if (secondsToPoint === null) {
 				return;
 			}
 
-			if (this.state.secondsToPoint > 0) {
-				setTimeout(this.checkIfShouldAddPoint.bind(this), 1000);
+			if (secondsToPoint > 0) {
+				this.timeout = setTimeout(this.checkIfShouldAddPoint.bind(this), 1000);
 				return;
 			}
 

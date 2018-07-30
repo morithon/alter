@@ -95,6 +95,7 @@ const rootReducer = (state: AppState = initialState, action: AppAction): AppStat
 
 		const cachedReloadingStartTime = cachedGamePoints === config.maxGamePoints ? null : Date.now();
 
+		console.log(cachedGamePoints, cachedReloadingStartTime);
 		return {
 			...state,
 			cachedGamePoints,
