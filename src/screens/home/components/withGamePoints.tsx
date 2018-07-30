@@ -38,14 +38,12 @@ export default function withGamePoints
 
 		public componentDidMount() {
 			if (this.props.reloadingStartTime) {
-				console.log('did mount');
 				this.checkIfShouldAddPoint();
 			}
 		}
 
 		public componentDidUpdate(prevProps: GamePointsWrapperProps) {
 			if (this.props.reloadingStartTime && prevProps.reloadingStartTime !== this.props.reloadingStartTime) {
-				console.log('did update');
 				this.checkIfShouldAddPoint();
 			}
 		}
