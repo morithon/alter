@@ -30,7 +30,7 @@ const ScoreScreen = ({score, navigation: {popToTop}}: ScoreScreenProps & Navigat
 		<Text>
 			{score}
 		</Text>
-		<Button onPress={popToTop} title="Go back to Home Screen">
+		<Button onPress={() => popToTop} title="Go back to Home Screen">
 		</Button>
 	</View>
 );
