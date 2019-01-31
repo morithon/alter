@@ -1,8 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 
+<<<<<<< HEAD
 import {ValueDisplayProps} from '../interfaces/ValueDisplay';
 import {lightBlue} from '../styles/colors';
+=======
+import config from '../config/config';
+import {lightGray} from '../styles/colors';
+>>>>>>> master
 import {utils} from '../styles/utils';
 import {GameStates} from './GameStates';
 import Word from './Word';
@@ -24,8 +29,8 @@ const ValueDisplay = ({mode, value, focusOn, onPress, onWordFadeOut}: ValueDispl
 			<View style={[styles.wordContainer]}>
 				<Word
 					value={value}
-					fadeToDuration={20}
-					showForDuration={200}
+					fadeToDuration={config.wordFadeToDuration}
+					showForDuration={config.wordShowForDuration}
 					onFadeOut={onWordFadeOut}
 				/>
 			</View>
