@@ -1,13 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 
-<<<<<<< HEAD
+import {config} from '../configs/config';
 import {ValueDisplayProps} from '../interfaces/ValueDisplay';
 import {lightBlue} from '../styles/colors';
-=======
-import config from '../config/config';
-import {lightGray} from '../styles/colors';
->>>>>>> master
 import {utils} from '../styles/utils';
 import {GameStates} from './GameStates';
 import Word from './Word';

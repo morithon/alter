@@ -4,11 +4,7 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 
 import changeGameState from '../actions/changeGameState';
-<<<<<<< HEAD
 import {config} from '../configs/config';
-=======
-import config from '../config/config';
->>>>>>> master
 import {AppAction} from '../interfaces/AppAction';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
 import {utils} from '../styles/utils';
@@ -32,11 +28,7 @@ interface CountdownState {
 }
 
 class Countdown extends React.Component<CountdownProps, CountdownState> {
-<<<<<<< HEAD
-	private countdownInterval = 800;
-=======
 	private countdownInterval = config.countdownInterval;
->>>>>>> master
 	private countdownFrom = config.countdownFrom;
 	private intervalId: number | null = null;
 

@@ -19,15 +19,9 @@
   },
   "devDependencies": {
     "@types/jest": "^22.0.0",
-<<<<<<< HEAD
-    "@types/react": "^16.0.38",
-    "@types/react-native": "^0.52.0",
-    "@types/react-native-i18n": "^2.0.0",
-=======
     "@types/react": "^16.7.21",
     "@types/react-native": "^0.57.32",
     "@types/react-native-elements": "^0.18.0",
->>>>>>> master
     "@types/react-navigation": "^1.2.1",
     "@types/react-redux": "^5.0.15",
     "@types/react-test-renderer": "^16.0.0",
@@ -38,37 +32,9 @@
     "react-test-renderer": "16.2.0",
     "ts-jest": "^22.0.4",
     "tslib": "^1.7.1",
-<<<<<<< HEAD
-    "typescript": "^2.7.0"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
-  "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js",
-    "check": "tsc && tslint --p tsconfig.json"
-  },
-  "jest": {
-    "preset": "jest-expo"
-  },
-  "dependencies": {
-    "expo": "^27.0.0",
-    "react": "16.3.2",
-    "react-native": "0.55.0",
-    "react-native-app-intro-slider": "^0.2.4",
-    "react-native-elements": "^0.19.1",
-    "react-native-i18n": "^2.0.12",
-    "react-navigation": "^1.0.0",
-    "react-redux": "^5.0.6",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.16.0"
-=======
     "typescript": "^3.2.4"
   },
   "jest": {
     "preset": "jest-expo"
->>>>>>> master
   }
 }
