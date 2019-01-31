@@ -6,6 +6,7 @@ import changeGameState from '../actions/changeGameState';
 import endGame from '../actions/endGame';
 import handleWordPress from '../actions/handleWordPress';
 import waitForUserPress from '../actions/waitForUserPress';
+import config from '../config/config';
 import wordsGenerator from '../helpers/wordsGenerator/wordsGenerator';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
@@ -54,7 +55,7 @@ export interface GameplayState {
 
 class Gameplay extends React.Component<GameplayProps, GameplayState> {
 	private wordsGenerator = wordsGenerator();
-	private numberOfRounds = 100;
+	private numberOfRounds = config.numberOfRounds;
 
 	constructor(props: GameplayProps) {
 		super(props);

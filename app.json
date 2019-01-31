@@ -1,12 +1,11 @@
 {
 	"expo": {
-	"name": "Alter",
-	"slug": "abm",
+	  "name": "Alter",
+	  "slug": "alter",
 	  "privacy": "public",
 	  "sdkVersion": "32.0.0",
 	  "platforms": [
-		"ios",
-		"android"
+		"ios"
 	  ],
 	  "version": "1.0.0",
 	  "orientation": "portrait",
@@ -14,7 +13,7 @@
 	  "splash": {
 		"image": "./assets/splash.png",
 		"resizeMode": "contain",
-		"backgroundColor": "#ffffff"
+		"backgroundColor": "#ea7317"
 	  },
 	  "updates": {
 		"fallbackToCacheTimeout": 0

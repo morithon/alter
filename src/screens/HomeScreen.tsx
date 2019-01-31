@@ -3,7 +3,6 @@ import {View} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
 import {NavigationScreenProps} from 'react-navigation';
 
-import {DisabledIconButton} from '../components/DisabledIconButton';
 import {brightBlue, darkBrightBlue} from '../styles/colors';
 import {homeScreenStyles as styles} from '../styles/homeScreen';
 import {utils} from '../styles/utils';
@@ -29,28 +28,16 @@ export default class HomeScreen extends React.Component<NavigationScreenProps, {
 							containerStyle={{backgroundColor: brightBlue}}
 							iconStyle={{color: '#fff'}}
 							underlayColor={darkBrightBlue}
-							size={32}
+							size={48}
 							raised={true}
 							onPress={() => navigate('Game')}
 						/>
-						<Text style={{color: brightBlue}}>
-							Calm
+						<Text style={styles.iconText}>
+							Start
 						</Text>
 					</View>
-					<DisabledIconButton
-						iconName="glasses"
-						iconType="material-community"
-						caption="Sharp"
-						releaseDateCaption="(Coming Fall 2018)"
-					/>
 				</View>
 				<View style={styles.row}>
-					<DisabledIconButton
-						caption="Sober"
-					/>
-					<DisabledIconButton
-						caption="Non-smoking"
-					/>
 				</View>
 				<View style={styles.bottomSpace}>
 				</View>
