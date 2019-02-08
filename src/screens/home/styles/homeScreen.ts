@@ -1,9 +1,5 @@
 import {StyleSheet} from 'react-native';
-<<<<<<< HEAD:src/screens/home/styles/homeScreen.ts
-import {orange} from '../../../styles/colors';
-=======
-import {brightBlue, orange} from '../styles/colors';
->>>>>>> master:src/styles/homeScreen.ts
+import {brightBlue, orange} from '../../../styles/colors';
 
 export const homeScreenStyles = StyleSheet.create({
 	container: {
@@ -31,11 +27,6 @@ export const homeScreenStyles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: 'white',
 		fontSize: 80,
-	},
-	iconText: {
-		fontWeight: 'bold',
-		color: brightBlue,
-		fontSize: 24,
 	},
 	topSpace: {
 		flex: 1

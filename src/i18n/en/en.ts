@@ -6,7 +6,7 @@ export default {
 	positiveWords,
 	negativeWords,
 	neutralWords,
-	calmGameName: 'Calm',
+	start: 'Start',
 	soberGameName: 'Sober',
 	nonSmokingGameName: 'Non-smoking',
 	anxietySlideTitle: 'Anxious?',

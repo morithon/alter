@@ -3,7 +3,9 @@ import {brightBlue} from '../../../styles/colors';
 
 export const calmGameIconButtonStyles = StyleSheet.create({
 	text: {
-		color: brightBlue
+		fontWeight: 'bold',
+		color: brightBlue,
+		fontSize: 24,
 	},
 	container: {
 		backgroundColor: brightBlue

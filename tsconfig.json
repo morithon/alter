@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "noEmit": true,
+    "noEmit": false,
     "experimentalDecorators": true,
 	"allowJs": false,
 	"allowSyntheticDefaultImports": true,
@@ -16,6 +16,9 @@
 	"noImplicitReturns": true,
 	"noUnusedLocals": true
   },
+  "include": [
+	"src/**/*",
+  ],
   "exclude": [
 	  "node_modules",
 	  "**/__tests__/",

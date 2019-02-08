@@ -11,8 +11,7 @@ import {utils} from '../styles/utils';
 import {GameStates} from './GameStates';
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
+	container: { flex: 1,
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'

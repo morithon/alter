@@ -1,15 +1,12 @@
 import React from 'react';
-import {AsyncStorage, View} from 'react-native';
+import {View} from 'react-native';
 import {Icon, Text} from 'react-native-elements';
-import {connect, Dispatch} from 'react-redux';
+import {connect} from 'react-redux';
 
-import removeCachedGamePointActionCreator from '../../../actions/removeCachedGamePoint';
 import I18n from '../../../i18n/i18n';
-import {AppAction} from '../../../interfaces/AppAction';
 import AppState from '../../../interfaces/AppState';
 import {darkBrightBlue} from '../../../styles/colors';
 import {
-	CalmGameIconButtonDispatchProps,
 	CalmGameIconButtonOwnProps,
 	CalmGameIconButtonProps,
 	CalmGameIconButtonStateProps
@@ -20,27 +17,9 @@ import {homeScreenStyles} from '../styles/homeScreen';
 const CalmGameIconButtonComponent = ({
 	navigate,
 	goToIntro,
-	gamePoints,
-	removeCachedGamePoint}: CalmGameIconButtonProps
+	}: CalmGameIconButtonProps
 ) => {
-	const checkGamePoints = async (): Promise<boolean> => {
-		if (gamePoints > 0) {
-			removeCachedGamePoint();
-
-			return true;
-		}
-
-		return false;
-	};
-
-	const handlePress = async () => {
-		const canUserPlay = await checkGamePoints();
-		if (!canUserPlay) {
-			return navigate('GamePoints');
-		}
-
-		return goToIntro ? navigate('CalmIntro') : navigate('CalmGame');
-	};
+	const handlePress = async () => goToIntro ? navigate('CalmIntro') : navigate('CalmGame');
 
 	return (
 		<View style={homeScreenStyles.column} >
@@ -51,33 +30,28 @@ const CalmGameIconButtonComponent = ({
 				containerStyle={styles.container}
 				iconStyle={styles.icon}
 				underlayColor={darkBrightBlue}
-				size={32}
+				size={48}
 				raised={true}
 				onPress={handlePress}
 			/>
 			<Text style={styles.text}>
-				{I18n.t('calmGameName')}
+				{I18n.t('start')}
 			</Text>
 		</View>
 	);
 };
 
 const mapStateToProps =
-	({userInfo: {hasSeenCalmIntro}, cachedGamePoints: gamePoints}: AppState): CalmGameIconButtonStateProps => ({
+	({userInfo: {hasSeenCalmIntro}}: AppState): CalmGameIconButtonStateProps => ({
 		goToIntro: !hasSeenCalmIntro,
-		gamePoints
 	});
-
-const mapDispatchToProps = (dispatch: Dispatch<AppAction>): CalmGameIconButtonDispatchProps => ({
-	removeCachedGamePoint: () => dispatch(removeCachedGamePointActionCreator())
-});
 
 const CalmGameIconButton = connect<
 		CalmGameIconButtonStateProps,
-		CalmGameIconButtonDispatchProps,
+		{},
 		CalmGameIconButtonOwnProps,
 		AppState
 	>
-	(mapStateToProps, mapDispatchToProps)(CalmGameIconButtonComponent);
+	(mapStateToProps)(CalmGameIconButtonComponent);
 
 export default CalmGameIconButton;

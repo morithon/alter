@@ -1,22 +1,17 @@
 import {
-	ADD_CACHED_GAME_POINT,
 	CHANGE_GAME_STATE,
 	CHANGE_USER_INFO,
 	END_GAME,
 	HANDLE_WORD_PRESS,
-	REMOVE_CACHED_GAME_POINT,
-	SET_CACHED_GAME_POINTS,
 	WAIT_FOR_USER_PRESS
 } from '../actions/actionTypes';
 import {GameStates} from '../components/GameStates';
-import {config} from '../configs/config';
 import calculateRoundScore from '../helpers/calculateRoundScore';
 import {AppAction} from '../interfaces/AppAction';
 import AppState from '../interfaces/AppState';
 import ChangeGameStateAction from '../interfaces/ChangeGameStateAction';
 import ChangeUserInfoAction from '../interfaces/ChangeUserInfoAction';
 import HandleWordPressAction from '../interfaces/HandleWordPressAction';
-import SetCachedGamePointAction from '../interfaces/SetCachedGamePointsAction';
 import WaitForUserPressAction from '../interfaces/WaitForUserPressAction';
 
 const initialState = {
@@ -28,8 +23,6 @@ const initialState = {
 	userInfo: {
 		hasSeenCalmIntro: false
 	},
-	cachedGamePoints: 0,
-	cachedReloadingStartTime: null
 };
 
 const rootReducer = (state: AppState = initialState, action: AppAction): AppState => {
@@ -73,43 +66,6 @@ const rootReducer = (state: AppState = initialState, action: AppAction): AppStat
 		return {
 			...state,
 			userInfo
-		};
-	}
-	case SET_CACHED_GAME_POINTS: {
-		let {cachedGamePoints} = action as SetCachedGamePointAction;
-		cachedGamePoints = Math.max(cachedGamePoints, config.maxGamePoints);
-
-		return {
-			...state,
-			cachedGamePoints
-		};
-	}
-	case ADD_CACHED_GAME_POINT: {
-		let {cachedGamePoints} = state;
-		if (cachedGamePoints < config.maxGamePoints) {
-			cachedGamePoints += 1;
-		}
-
-		const cachedReloadingStartTime = cachedGamePoints === config.maxGamePoints ? null : Date.now();
-
-		return {
-			...state,
-			cachedGamePoints,
-			cachedReloadingStartTime
-		};
-	}
-	case REMOVE_CACHED_GAME_POINT: {
-		let {cachedGamePoints} = state;
-		if (cachedGamePoints > 0) {
-			cachedGamePoints -= 1;
-		}
-
-		const cachedReloadingStartTime = state.cachedReloadingStartTime || Date.now();
-
-		return {
-			...state,
-			cachedGamePoints,
-			cachedReloadingStartTime
 		};
 	}
 	default:

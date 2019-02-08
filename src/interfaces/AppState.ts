@@ -8,6 +8,4 @@ export default interface AppState {
 	roundScore: number;
 	startTime: number | null;
 	userInfo: UserInfo;
-	cachedGamePoints: number;
-	cachedReloadingStartTime: number | null;
 }

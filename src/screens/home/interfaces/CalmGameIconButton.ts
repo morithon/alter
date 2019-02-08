@@ -4,13 +4,7 @@ export interface CalmGameIconButtonOwnProps {
 
 export interface CalmGameIconButtonStateProps {
 	goToIntro: boolean;
-	gamePoints: number;
-}
-
-export interface CalmGameIconButtonDispatchProps {
-	removeCachedGamePoint: () => void;
 }
 
 export type CalmGameIconButtonProps = CalmGameIconButtonOwnProps &
-	CalmGameIconButtonStateProps &
-	CalmGameIconButtonDispatchProps;
+	CalmGameIconButtonStateProps;
